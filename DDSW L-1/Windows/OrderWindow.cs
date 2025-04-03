@@ -9,10 +9,9 @@
         {
             InitializeComponent();
             currentUser = user;
-            items = Program.GetItems();
-            MainOperationsFunc.LoadItems(items, listBox1);
+            MainOperationsFunc.LoadItems(listBox1);
         }
-        
+
         private void OrderWindow_Load(object sender, EventArgs e)
         {
 
@@ -20,25 +19,19 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-           MainOperationsFunc.SelectItem(listBox1, listBox2, items, orderedItems, (int)numericUpDown1.Value);
+            MainOperationsFunc.OrderItems(listBox1, listBox2, orderedItems, (int)numericUpDown1.Value);
             numericUpDown1.Value = 0;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-
-            int itemIndex = listBox1.SelectedIndex;
-            Item selectedItem = Program.GetItems()[itemIndex];
-            if (selectedItem.Count == numericUpDown1.Value)
-            {
-                numericUpDown1.Value = selectedItem.Count;
-            }
+            MainOperationsFunc.SetCounterValue(listBox1, numericUpDown1);
         }
         private void button2_Click(object sender, EventArgs e)
         {
             if (listBox2.Items.Count != 0)
             {
-                DataSaver<Item>.SaveData(orderedItems, $"{currentUser.Name}`sOrder-{DateTime.UtcNow}");
+                DataSaver<Item>.SaveOrderData(orderedItems, $"{currentUser.Surname}-{currentUser.Name}-`sOrder-{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.txt");
                 MessageBox.Show("You have finished placing your order.\nReturn to the initial window.", "The order was successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listBox2.Items.Clear();
                 orderedItems.Clear();
@@ -52,6 +45,11 @@
         private void button3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

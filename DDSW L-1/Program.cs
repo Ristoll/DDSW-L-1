@@ -31,9 +31,9 @@ namespace DDSW_L_1
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new AuthorizationWindow());
-            
-            DataSaver<User>.SaveData(usersList);
-            DataSaver<Item>.SaveData(itemsList);
+
+            if (usersList != null) DataSaver<User>.SaveData(usersList);
+            if (itemsList != null) DataSaver<Item>.SaveData(itemsList);
         }
     }
 }

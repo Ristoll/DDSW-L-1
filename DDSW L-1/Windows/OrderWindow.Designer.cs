@@ -75,6 +75,7 @@ namespace DDSW_L_1.Windows
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(301, 384);
             listBox1.TabIndex = 7;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // listBox2
             // 

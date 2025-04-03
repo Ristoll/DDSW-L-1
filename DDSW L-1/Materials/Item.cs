@@ -1,23 +1,36 @@
-﻿namespace DDSW_L_1
+﻿using System.Text.Json.Serialization;
+
+namespace DDSW_L_1
 {
     public class Item
     {
-        public string Name { get; private set; }
-        public int Count { get; private set; }
-        public EType Type { get; private set; }
-        public EBrand Brand { get; private set; }
+        [JsonInclude]
+        public string Name { get; set; }
+        [JsonInclude]
+        public int Count { get; set; }
+        [JsonInclude]
+        public EType Type { get; set; }
+        [JsonInclude]
+        public EBrand Brand { get; set; }
 
         public Item() { }
-        public Item(EType type, string name, int quantity, EBrand brand) 
-        { 
+
+        [JsonConstructor]
+        public Item(EType type, string name, int count, EBrand brand)
+        {
             Type = type;
             Name = name;
-            Count = quantity;
+            Count = count;
             Brand = brand;
         }
 
         public void SetCount(int count)
         {
+            if (count < 0)
+            {
+                Count = 0;
+                return;
+            }
             Count = count;
         }
         public override string ToString()
