@@ -32,5 +32,10 @@ namespace DDSW_L_1
             if (listBox1Index == -1) return;
             MainOperationsFunc.LoadOrders(ordersData, listBox1, listBox2, listBox1Index);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -108,6 +108,7 @@
             button2.TabIndex = 7;
             button2.Text = "Exit";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // OrderManagementWindow
             // 

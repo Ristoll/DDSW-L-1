@@ -61,21 +61,17 @@
                 Item selectedItem = Program.GetItems()[mainIndex];
                 int selectedValue = quantity;
 
-                // Перевірка на достатність товару на складі
                 if (Program.GetCustomerItems()[mainIndex].Count < selectedValue || Program.GetCustomerItems()[mainIndex].Count == 0)
                 {
                     MessageBox.Show($"There is not enough stock.\n{Program.GetCustomerItems()[mainIndex].Count} available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Перевірка, чи вже є цей товар у списку замовлених
                 var existingItem = orderedItems.FirstOrDefault(item => item.Name == selectedItem.Name && item.Brand == selectedItem.Brand);
                 if (existingItem != null)
                 {
-                    // Якщо товар вже є в замовленні, збільшуємо кількість
                     existingItem.SetCount(existingItem.Count + selectedValue);
 
-                    // Оновлюємо кількість товару на складі
                     Program.GetCustomerItems()[mainIndex].SetCount(Program.GetCustomerItems()[mainIndex].Count - selectedValue);
                     UpdateListBox(Program.GetCustomerItems(), mainListBox, true);
                     UpdateListBox(orderedItems, orderListBox, false);
@@ -84,12 +80,10 @@
                     return;
                 }
 
-                // Якщо товару ще немає в замовленні, додаємо новий товар
                 selectedItem.SetCount(selectedValue);
                 orderedItems.Add(selectedItem);
                 orderListBox.Items.Add($"{selectedItem.Name} {selectedItem.Brand} - {selectedItem.Count}");
 
-                // Оновлюємо кількість товару на складі
                 Program.GetCustomerItems()[mainIndex].SetCount(Program.GetCustomerItems()[mainIndex].Count - selectedValue);
                 UpdateListBox(Program.GetCustomerItems(), mainListBox, true);
                 DataSaver<Item>.SaveData(Program.GetCustomerItems(), "CustomerItem");
@@ -157,6 +151,7 @@
         }
         public static void ApproveDelivery(ListBox orders, ListBox orderItemsBox, ListBox mainListBox, List<List<Item>> items, int index)
         {
+            string selectedFileName = orders.Items[index]?.ToString();
             if (index == -1)
             {
                 MessageBox.Show("Select order to approve", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -183,8 +178,10 @@
             orders.Items.RemoveAt(index);
             items.RemoveAt(index);
             orderItemsBox.Items.Clear();
-
+            DataSaver<Item>.DeleteFile(selectedFileName);
+            DataSaver<Item>.SaveData(Program.GetItems());
             UpdateListBox(Program.GetItems(), mainListBox, true);
+            
         }
     }
 }
