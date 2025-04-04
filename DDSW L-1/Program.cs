@@ -8,7 +8,7 @@ namespace DDSW_L_1
         ///  The main entry point for the application.
         /// </summary>
         /// 
-        public static event Action<Dictionary<string, Item>> ItemsChanged;
+        public static event Action<List<Item>> ItemsChanged;
         private static List<User> usersList = DataSaver<User>.LoadData() ?? new List<User>();
         private static List<Item> itemsList = DataSaver<Item>.LoadData() ?? new List<Item>();
         private static List<Item> customerItems = DataSaver<Item>.LoadData("CustomerItem");
@@ -23,9 +23,9 @@ namespace DDSW_L_1
         public static List<Item> GetCustomerItems() => customerItems;
         public static void SetUsers(List<User> users) => usersList = users;
         public static void SetItems(List<Item> items) => itemsList = items;
-        public static void InvokeItemsChanged(Dictionary<string, Item> previousState)
+        public static void InvokeItemsChanged()
         {
-            ItemsChanged?.Invoke(previousState);
+            ItemsChanged?.Invoke(Program.GetItems());
         }
 
         [STAThread]

@@ -8,7 +8,7 @@ namespace DDSW_L_1
         public MovingItemsReport()
         {
         }
-        public void FillReport(Dictionary<string, Item> previousState)
+        public void FillReport(List<Item> previousState)
         {
             List<Item> items = Program.GetItems();
             if (items == null || items.Count == 0) return;
@@ -17,16 +17,15 @@ namespace DDSW_L_1
             {
                 writer.WriteLine($"\n--- Зміни {DateTime.Now:yyyy-MM-dd HH:mm:ss} ---");
 
-                Dictionary<string, Item> currentState = items.ToDictionary(item => item.Name, item => item);
-
-                // Визначаємо зміни
-                foreach (var item in currentState)
+                // Порівнюємо попередній та поточний стани
+                foreach (var currentItem in items)
                 {
-                    if (previousState.ContainsKey(item.Key))
-                    {
-                        var previousItem = previousState[item.Key];
-                        var currentItem = item.Value;
+                    // Знайдемо елемент в попередньому стані
+                    var previousItem = previousState.FirstOrDefault(item => item.Name == currentItem.Name && item.Brand == currentItem.Brand);
 
+                    if (previousItem != null)
+                    {
+                        // Якщо елемент існує в обох станах
                         if (currentItem.Count > previousItem.Count)
                             writer.WriteLine($"{currentItem.Name} ({currentItem.Type}, {currentItem.Brand}) +{currentItem.Count - previousItem.Count}");
                         else if (currentItem.Count < previousItem.Count)
@@ -34,20 +33,26 @@ namespace DDSW_L_1
                     }
                     else
                     {
-                        writer.WriteLine($"+ {item.Value.Name} ({item.Value.Type}, {item.Value.Brand}) {item.Value.Count}");
+                        // Якщо елемент є в поточному стані, але немає в попередньому
+                        writer.WriteLine($"+ {currentItem.Name} ({currentItem.Type}, {currentItem.Brand}) {currentItem.Count}");
                     }
                 }
 
-                // Видалені предмети
-                foreach (var item in previousState.Keys.Except(currentState.Keys))
+                // Видалені предмети (ті, що є в попередньому стані, але немає в поточному)
+                foreach (var previousItem in previousState)
                 {
-                    var previousItem = previousState[item];
-                    writer.WriteLine($"- {previousItem.Name} ({previousItem.Type}, {previousItem.Brand}) {previousItem.Count}");
+                    var currentItem = items.FirstOrDefault(item => item.Name == previousItem.Name && item.Brand == previousItem.Brand);
+                    if (currentItem == null)
+                    {
+                        writer.WriteLine($"- {previousItem.Name} ({previousItem.Type}, {previousItem.Brand}) {previousItem.Count}");
+                    }
                 }
 
-                previousState = new Dictionary<string, Item>(currentState); // Оновлюємо стан
+                // Оновлюємо стан попереднього списку
+                previousState.Clear();
+                previousState.AddRange(items);
             }
         }
-
     }
 }
+

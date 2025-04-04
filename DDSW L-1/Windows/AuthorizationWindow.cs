@@ -31,7 +31,7 @@
                 {
                     newUser.CheckIfPhoneNumberExists(textBox3.Text.Trim());
                     Program.GetUsers().Add(newUser);
-                    DataSaver<User>.SaveData(Program.GetUsers(), "Users");
+                    DataSaver<User>.SaveData(Program.GetUsers());
                     ShowNeededWindow(newUser);
 
                     label3.ForeColor = System.Drawing.Color.Black;

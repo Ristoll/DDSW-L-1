@@ -45,14 +45,16 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(208, 364);
             listBox1.TabIndex = 0;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // listBox2
             // 
             listBox2.FormattingEnabled = true;
             listBox2.Location = new Point(242, 44);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(202, 304);
+            listBox2.Size = new Size(257, 304);
             listBox2.TabIndex = 1;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // label1
             // 

@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace DDSW_L_1
+﻿namespace DDSW_L_1
 {
     public partial class OrderManagementWindow : Form
     {
-        Dictionary<string, Item> currentState;
+        List<List<Item>> ordersData = DataSaver<List<Item>>.LoadOrdersData();
+        int listBox1Index;
         public OrderManagementWindow()
         {
             InitializeComponent();
-            currentState = Program.GetItems().ToDictionary(item => item.Name, item => item);
+            DataSaver<string>.LoadReportsToListBox(listBox1);
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
         }
 
         private void Program_ItemsChanged()
@@ -36,7 +28,17 @@ namespace DDSW_L_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Program.InvokeItemsChanged(currentState);
+            Program.InvokeItemsChanged();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox1Index = listBox1.SelectedIndex;
+            MainOperationsFunc.LoadOrders(ordersData, listBox1, listBox2, listBox1Index);
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

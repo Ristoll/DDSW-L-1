@@ -1,16 +1,22 @@
-﻿using System.Linq;
-
-namespace DDSW_L_1
+﻿namespace DDSW_L_1
 {
     public class MainOperationsFunc
     {
-        
         public static void LoadItems(ListBox listBox)
         {
             foreach (var item in Program.GetCustomerItems())
             {
                 listBox.Items.Add(item.ToString());
             }
+        }
+        public static void LoadOrders(List<List<Item>> orders, ListBox customers, ListBox order, int customerIndex)
+        {
+            order.Items.Clear();
+            foreach (var item in orders[customerIndex])
+            {
+                order.Items.Add($"{item.Name} {item.Brand} - {item.Count}");
+            }
+            
         }
         public static void UpdateListBox(List<Item> items, ListBox listBox, bool isMain)
         {
@@ -34,7 +40,7 @@ namespace DDSW_L_1
         {
             try
             {
-                
+
                 if (mainIndex == -1)
                 {
                     return;
@@ -105,7 +111,43 @@ namespace DDSW_L_1
             orderedItems.RemoveAt(selectedIndex);
             UpdateListBox(Program.GetCustomerItems(), mainListBox, true);
         }
+            public static void LoadReportsToListBox(ListBox listBox)
+            {
+                string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
 
+                try
+                {
+                    // Перевіряємо, чи існує вказана папка
+                    if (!Directory.Exists(folderPath))
+                    {
+                        MessageBox.Show("Folder does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
+                    // Отримуємо всі файли в папці
+                    string[] filePaths = Directory.GetFiles(folderPath);
+
+                    // Очищаємо список перед додаванням нових елементів
+                    listBox.Items.Clear();
+
+                    foreach (string filePath in filePaths)
+                    {
+                        // Отримуємо назву файлу
+                        string fileName = Path.GetFileName(filePath);
+
+                        // Додаємо інформацію до списку
+                        listBox.Items.Add(fileName);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Виводимо повідомлення про помилку, якщо виникла проблема
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
-}
+    }
+
+
+
+
