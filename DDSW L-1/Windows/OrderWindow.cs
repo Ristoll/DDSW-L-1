@@ -4,7 +4,6 @@
     {
         User currentUser;
         private List<Item> orderedItems = new List<Item>();
-        private List<Item> items;
         private int selectedOrderIndex;
         public OrderWindow(User user)
         {
@@ -36,6 +35,7 @@
                 MessageBox.Show("You have finished placing your order.\nReturn to the initial window.", "The order was successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listBox2.Items.Clear();
                 orderedItems.Clear();
+                DataSaver<Item>.SaveData(Program.GetCustomerItems(), "CustomerItem");
             }
             else
             {

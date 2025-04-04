@@ -4,10 +4,10 @@ namespace DDSW_L_1
 {
     public class MainOperationsFunc
     {
-        private readonly static List<Item> customerItems = DataSaver<Item>.LoadData("CustomerItem");
+        
         public static void LoadItems(ListBox listBox)
         {
-            foreach (var item in customerItems)
+            foreach (var item in Program.GetCustomerItems())
             {
                 listBox.Items.Add(item.ToString());
             }
@@ -31,17 +31,17 @@ namespace DDSW_L_1
                 }
                 Item selectedItem = Program.GetItems()[itemIndex];
                 int selectedValue = quantity;
-                if (customerItems[itemIndex].Count < selectedValue || customerItems[itemIndex].Count == 0)
+                if (Program.GetCustomerItems()[itemIndex].Count < selectedValue || Program.GetCustomerItems()[itemIndex].Count == 0)
                 {
-                    MessageBox.Show($"There is not enough stock.\n{customerItems[itemIndex].Count} available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"There is not enough stock.\n{Program.GetCustomerItems()[itemIndex].Count} available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 selectedItem.SetCount(selectedValue);
                 orderedItems.Add(selectedItem);
                 orderListBox.Items.Add($"{selectedItem.Name} {selectedItem.Brand} - {selectedItem.Count}");
-                customerItems[itemIndex].SetCount(customerItems[itemIndex].Count - selectedValue);
-                UpdateItems(customerItems, mainListBox);
-                DataSaver<Item>.SaveData(customerItems,"CustomerItem");
+                Program.GetCustomerItems()[itemIndex].SetCount(Program.GetCustomerItems()[itemIndex].Count - selectedValue);
+                UpdateItems(Program.GetCustomerItems(), mainListBox);
+                DataSaver<Item>.SaveData(Program.GetCustomerItems(), "CustomerItem");
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -55,7 +55,7 @@ namespace DDSW_L_1
                 return;
             }
             int itemIndex = mainListBox.SelectedIndex;
-            Item selectedItem = customerItems[itemIndex];
+            Item selectedItem = Program.GetCustomerItems()[itemIndex];
             if (selectedItem.Count == numericUpDown.Value)
             {
                 numericUpDown.Value = selectedItem.Count;
@@ -67,9 +67,9 @@ namespace DDSW_L_1
             orderListBox.Items.RemoveAt(selectedIndex);
             Item itemToFind = orderedItems[selectedIndex];
             int quantity = itemToFind.Count;
-            customerItems.FirstOrDefault(item => item.Name == itemToFind.Name && item.Brand == itemToFind.Brand).Count += quantity;
+            Program.GetCustomerItems().FirstOrDefault(item => item.Name == itemToFind.Name && item.Brand == itemToFind.Brand).Count += quantity;
             orderedItems.RemoveAt(selectedIndex);
-            UpdateItems(customerItems, mainListBox);
+            UpdateItems(Program.GetCustomerItems(), mainListBox);
         }
 
 

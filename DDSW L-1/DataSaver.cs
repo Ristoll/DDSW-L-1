@@ -4,17 +4,16 @@ namespace DDSW_L_1
 {
     public static class DataSaver<T>
     {
-        public static void SaveData(List<T> dataList, string header)
+        public static void SaveData(List<T> dataList)
         {
-            string fileName = $"{header}.txt";
+            string fileName = $"{typeof(T).Name}sData.txt";
 
             using FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             JsonSerializer.Serialize(fs, dataList, new JsonSerializerOptions { WriteIndented = true });
         }
-
-        public static void SaveData(List<T> dataList)
+        public static void SaveData(List<T> dataList, string header)
         {
-            string fileName = $"{typeof(T).Name}sData.txt";
+            string fileName = $"{header}sData.txt";
 
             using FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             JsonSerializer.Serialize(fs, dataList, new JsonSerializerOptions { WriteIndented = true });

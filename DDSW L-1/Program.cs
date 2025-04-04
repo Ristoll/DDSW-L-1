@@ -11,6 +11,7 @@ namespace DDSW_L_1
         public static event Action<Dictionary<string, Item>> ItemsChanged;
         private static List<User> usersList = DataSaver<User>.LoadData() ?? new List<User>();
         private static List<Item> itemsList = DataSaver<Item>.LoadData() ?? new List<Item>();
+        private static List<Item> customerItems = DataSaver<Item>.LoadData("CustomerItem");
         private static MovingItemsReport report = new MovingItemsReport();
         static Program()
         {
@@ -19,6 +20,7 @@ namespace DDSW_L_1
 
         public static List<User> GetUsers() => usersList;
         public static List<Item> GetItems() => itemsList;
+        public static List<Item> GetCustomerItems() => customerItems;
         public static void SetUsers(List<User> users) => usersList = users;
         public static void SetItems(List<Item> items) => itemsList = items;
         public static void InvokeItemsChanged(Dictionary<string, Item> previousState)
