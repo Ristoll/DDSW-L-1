@@ -4,6 +4,7 @@
     {
         User currentUser;
         private List<Item> orderedItems = new List<Item>();
+        private int selectedMainIndex;
         private int selectedOrderIndex;
         public OrderWindow(User user)
         {
@@ -20,7 +21,7 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainOperationsFunc.OrderItems(listBox1, listBox2, orderedItems, (int)numericUpDown1.Value);
+            MainOperationsFunc.OrderItem(listBox1, listBox2, orderedItems, (int)numericUpDown1.Value, selectedMainIndex);
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -50,7 +51,7 @@
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            selectedMainIndex = listBox1.SelectedIndex;
         }
 
         private void button4_Click(object sender, EventArgs e)

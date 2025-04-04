@@ -28,7 +28,6 @@ namespace DDSW_L_1
                 Directory.CreateDirectory(folderPath);
             }
 
-            // Поєднуємо шлях до папки з іменем файлу
             string fullPath = Path.Combine(folderPath, fileName);
 
             using FileStream fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
