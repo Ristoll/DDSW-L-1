@@ -14,14 +14,21 @@ namespace DDSW_L_1
         }
         public static void UpdateItems(List<Item> items, ListBox listBox)
         {
-            listBox.Items.Clear();
-            LoadItems(listBox);
+            for (int i = 0; i < items.Count; i++)
+            {
+                listBox.Items[i] = items[i].ToString(); 
+            }
         }
+
         public static void OrderItems(ListBox mainListBox, ListBox orderListBox, List<Item> orderedItems, int quantity)
         {
             try
             {
                 int itemIndex = mainListBox.SelectedIndex;
+                if(itemIndex == -1)
+                {
+                    return;
+                }
                 Item selectedItem = Program.GetItems()[itemIndex];
                 int selectedValue = quantity;
                 if (customerItems[itemIndex].Count < selectedValue || customerItems[itemIndex].Count == 0)
@@ -54,5 +61,17 @@ namespace DDSW_L_1
                 numericUpDown.Value = selectedItem.Count;
             }
         }
-    }
+
+        public static void DeleteItem(ListBox mainListBox, ListBox orderListBox, List<Item> orderedItems, int selectedIndex)
+        {
+            orderListBox.Items.RemoveAt(selectedIndex);
+            Item itemToFind = orderedItems[selectedIndex];
+            int quantity = itemToFind.Count;
+            customerItems.FirstOrDefault(item => item.Name == itemToFind.Name && item.Brand == itemToFind.Brand).Count += quantity;
+            orderedItems.RemoveAt(selectedIndex);
+            UpdateItems(customerItems, mainListBox);
+        }
+
+
+        }
 }

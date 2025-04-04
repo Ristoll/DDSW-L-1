@@ -36,6 +36,7 @@ namespace DDSW_L_1.Windows
             listBox1 = new ListBox();
             listBox2 = new ListBox();
             button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -79,11 +80,13 @@ namespace DDSW_L_1.Windows
             // 
             // listBox2
             // 
+            listBox2.DisplayMember = "КЕНКЕР";
             listBox2.FormattingEnabled = true;
             listBox2.Location = new Point(487, 33);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(301, 384);
+            listBox2.Size = new Size(301, 344);
             listBox2.TabIndex = 8;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // button3
             // 
@@ -95,11 +98,22 @@ namespace DDSW_L_1.Windows
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // button4
+            // 
+            button4.Location = new Point(593, 388);
+            button4.Name = "button4";
+            button4.Size = new Size(98, 29);
+            button4.TabIndex = 10;
+            button4.Text = "Delete item";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // OrderWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(listBox2);
             Controls.Add(listBox1);
@@ -119,5 +133,6 @@ namespace DDSW_L_1.Windows
         private ListBox listBox1;
         private ListBox listBox2;
         private Button button3;
+        private Button button4;
     }
 }

@@ -5,9 +5,11 @@
         User currentUser;
         private List<Item> orderedItems = new List<Item>();
         private List<Item> items;
+        private int selectedOrderIndex;
         public OrderWindow(User user)
         {
             InitializeComponent();
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             currentUser = user;
             MainOperationsFunc.LoadItems(listBox1);
         }
@@ -20,7 +22,6 @@
         private void button1_Click(object sender, EventArgs e)
         {
             MainOperationsFunc.OrderItems(listBox1, listBox2, orderedItems, (int)numericUpDown1.Value);
-            numericUpDown1.Value = 0;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -44,12 +45,30 @@
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (selectedOrderIndex != -1)
+            {
+                MainOperationsFunc.DeleteItem(listBox1, listBox2, orderedItems, selectedOrderIndex);
+            }
+            else
+            {
+                MessageBox.Show("Select an item to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedOrderIndex = listBox2.SelectedIndex;
         }
     }
 }
