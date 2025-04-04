@@ -2,8 +2,17 @@
 {
     public class MainOperationsFunc
     {
-        public static void LoadItems(ListBox listBox)
+        public static void LoadItems(ListBox listBox, bool isMain)
         {
+            if (isMain)
+            {
+                foreach (var item in Program.GetItems())
+                {
+                    listBox.Items.Add(item.ToString());
+                }
+                return;
+            }
+
             foreach (var item in Program.GetCustomerItems())
             {
                 listBox.Items.Add(item.ToString());
@@ -12,11 +21,15 @@
         public static void LoadOrders(List<List<Item>> orders, ListBox customers, ListBox order, int customerIndex)
         {
             order.Items.Clear();
+            if (customerIndex == -1)
+            {
+                return;
+            }
             foreach (var item in orders[customerIndex])
             {
                 order.Items.Add($"{item.Name} {item.Brand} - {item.Count}");
             }
-            
+
         }
         public static void UpdateListBox(List<Item> items, ListBox listBox, bool isMain)
         {
@@ -40,7 +53,6 @@
         {
             try
             {
-
                 if (mainIndex == -1)
                 {
                     return;
@@ -87,7 +99,6 @@
                 MessageBox.Show("Select item from left list of items to continue", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public static void SetCounterValue(ListBox mainListBox, NumericUpDown numericUpDown)
         {
             if (mainListBox.SelectedIndex == -1)
@@ -101,7 +112,6 @@
                 numericUpDown.Value = selectedItem.Count;
             }
         }
-
         public static void DeleteItem(ListBox mainListBox, ListBox orderListBox, List<Item> orderedItems, int selectedIndex)
         {
             orderListBox.Items.RemoveAt(selectedIndex);
@@ -111,43 +121,73 @@
             orderedItems.RemoveAt(selectedIndex);
             UpdateListBox(Program.GetCustomerItems(), mainListBox, true);
         }
-            public static void LoadReportsToListBox(ListBox listBox)
+        public static void LoadReportsToListBox(ListBox listBox)
+        {
+            string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
+
+            try
             {
-                string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
-
-                try
+                // Перевіряємо, чи існує вказана папка
+                if (!Directory.Exists(folderPath))
                 {
-                    // Перевіряємо, чи існує вказана папка
-                    if (!Directory.Exists(folderPath))
-                    {
-                        MessageBox.Show("Folder does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Отримуємо всі файли в папці
-                    string[] filePaths = Directory.GetFiles(folderPath);
-
-                    // Очищаємо список перед додаванням нових елементів
-                    listBox.Items.Clear();
-
-                    foreach (string filePath in filePaths)
-                    {
-                        // Отримуємо назву файлу
-                        string fileName = Path.GetFileName(filePath);
-
-                        // Додаємо інформацію до списку
-                        listBox.Items.Add(fileName);
-                    }
+                    MessageBox.Show("Folder does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                catch (Exception ex)
+
+                // Отримуємо всі файли в папці
+                string[] filePaths = Directory.GetFiles(folderPath);
+
+                // Очищаємо список перед додаванням нових елементів
+                listBox.Items.Clear();
+
+                foreach (string filePath in filePaths)
                 {
-                    // Виводимо повідомлення про помилку, якщо виникла проблема
-                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Отримуємо назву файлу
+                    string fileName = Path.GetFileName(filePath);
+
+                    // Додаємо інформацію до списку
+                    listBox.Items.Add(fileName);
                 }
             }
+            catch (Exception ex)
+            {
+                // Виводимо повідомлення про помилку, якщо виникла проблема
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void ApproveDelivery(ListBox orders, ListBox orderItemsBox, ListBox mainListBox, List<List<Item>> items, int index)
+        {
+            if (index == -1)
+            {
+                MessageBox.Show("Select order to approve", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            List<Item> orderItems = items[index];
+
+            foreach (var orderedItem in orderItems)
+            {
+                Item stockItem = Program.GetItems().FirstOrDefault(i => i.Name == orderedItem.Name && i.Brand == orderedItem.Brand);
+
+                if (stockItem != null)
+                {
+                    if (stockItem.Count > orderedItem.Count)
+                    {
+                        stockItem.Count -= orderedItem.Count;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Not enough stock for {stockItem.Name} {stockItem.Brand}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            orders.Items.RemoveAt(index);
+            items.RemoveAt(index);
+            orderItemsBox.Items.Clear();
+
+            UpdateListBox(Program.GetItems(), mainListBox, true);
         }
     }
-
+}
 
 
 

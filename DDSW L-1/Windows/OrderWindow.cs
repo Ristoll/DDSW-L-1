@@ -11,7 +11,7 @@
             InitializeComponent();
             listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             currentUser = user;
-            MainOperationsFunc.LoadItems(listBox1);
+            MainOperationsFunc.LoadItems(listBox1, false);
         }
 
         private void OrderWindow_Load(object sender, EventArgs e)

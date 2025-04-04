@@ -3,7 +3,7 @@ namespace DDSW_L_1
 {
     public class MovingItemsReport
     {
-        public string FileName { get; } = $"MovingReport{DateTime.Today}.txt";
+        public string FileName { get; } = $"MovingReport.txt";
 
         public MovingItemsReport()
         {
@@ -47,10 +47,6 @@ namespace DDSW_L_1
                         writer.WriteLine($"- {previousItem.Name} ({previousItem.Type}, {previousItem.Brand}) {previousItem.Count}");
                     }
                 }
-
-                // Оновлюємо стан попереднього списку
-                previousState.Clear();
-                previousState.AddRange(items);
             }
         }
     }

@@ -25,7 +25,7 @@ namespace DDSW_L_1
         public static void SetItems(List<Item> items) => itemsList = items;
         public static void InvokeItemsChanged()
         {
-            ItemsChanged?.Invoke(Program.GetItems());
+            ItemsChanged?.Invoke(GetItems());
         }
 
         [STAThread]

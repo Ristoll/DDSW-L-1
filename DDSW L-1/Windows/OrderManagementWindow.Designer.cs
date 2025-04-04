@@ -43,18 +43,17 @@
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(11, 44);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(208, 364);
+            listBox1.Size = new Size(225, 364);
             listBox1.TabIndex = 0;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // listBox2
             // 
             listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(242, 44);
+            listBox2.Location = new Point(263, 44);
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(257, 304);
             listBox2.TabIndex = 1;
-            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -68,12 +67,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(305, 9);
+            label2.Location = new Point(362, 9);
             label2.Name = "label2";
             label2.Size = new Size(67, 20);
             label2.TabIndex = 3;
             label2.Text = "Сontents";
-            label2.Click += label2_Click;
             // 
             // listBox3
             // 
@@ -86,7 +84,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(569, 9);
+            label3.Location = new Point(583, 9);
             label3.Name = "label3";
             label3.Size = new Size(141, 20);
             label3.TabIndex = 5;
@@ -94,7 +92,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(291, 369);
+            button1.Location = new Point(342, 369);
             button1.Name = "button1";
             button1.Size = new Size(107, 39);
             button1.TabIndex = 6;
