@@ -23,7 +23,7 @@ namespace DDSW_L_1
         {
             MainOperationsFunc.ApproveMoving(listBox1, listBox2, listBox3, ordersData, listBox1Index, true);
             MainOperationsFunc.UpdateListBox(Program.GetItems(), listBox3, true);
-            Program.InvokeItemsChanged();
+            Program.InvokeItemsChanged("The Order Has Been Sent");
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

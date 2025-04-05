@@ -8,10 +8,11 @@ namespace DDSW_L_1
         ///  The main entry point for the application.
         /// </summary>
         /// 
-        public static event Action<List<Item>> ItemsChanged;
+        public static event Action<List<Item>, string> ItemsChanged;
         private static List<User> usersList = DataSaver<User>.LoadData() ?? new List<User>();
         private static List<Item> itemsList = DataSaver<Item>.LoadData() ?? new List<Item>();
-        private static List<Item> customerItems = DataSaver<Item>.LoadData("CustomerItem");
+        private static List<Item> customerItems = DataSaver<Item>.LoadData("CustomerItem") ?? new List<Item>();
+        private static List<Item> previousStateItems = itemsList;
         private static MovingItemsReport report = new MovingItemsReport();
         static Program()
         {
@@ -21,11 +22,54 @@ namespace DDSW_L_1
         public static List<User> GetUsers() => usersList;
         public static List<Item> GetItems() => itemsList;
         public static List<Item> GetCustomerItems() => customerItems;
+        public static List<Item> GetPreviousStateItems() => previousStateItems;
         public static void SetUsers(List<User> users) => usersList = users;
         public static void SetItems(List<Item> items) => itemsList = items;
-        public static void InvokeItemsChanged()
+        public static void SetPreviousStateItems()
         {
-            ItemsChanged?.Invoke(GetItems());
+            previousStateItems = itemsList;
+            DataSaver<Item>.SaveData(previousStateItems, "PreviousStateItem");
+        }
+        public static Item? GetDeletedItem()
+        {    
+            if (itemsList.Count == previousStateItems.Count)
+            {
+                return null;
+            }
+            for (int i = 0; i < itemsList.Count; i++)
+            {
+                var item1 = itemsList[i];
+                var item2 = previousStateItems[i];
+
+                if (item1.Name != item2.Name || item1.Brand != item2.Brand || item1.Count != item2.Count || item1.Type != item2.Type)
+                {
+                    return item2;
+                }
+            }
+            return null;
+        }
+        public static IEnumerable<string> CompareLists()
+        {
+            if (itemsList.Count != previousStateItems.Count)
+            {
+                yield break;
+            }
+            for (int i = 0; i < itemsList.Count; i++)
+            {
+                var item1 = itemsList[i];
+                var item2 = previousStateItems[i];
+
+                if (item1.Name != item2.Name || item1.Brand != item2.Brand || item1.Count != item2.Count || item1.Type != item2.Type)
+                {
+                    char sign = item1.Count >= item2.Count ? '+' : '-';
+                    int count = Math.Abs(item1.Count - item2.Count);
+                    yield return $"{sign} {count} {item1.Name} {item1.Brand} {item1.Type}";
+                }
+            }
+        }
+        public static void InvokeItemsChanged(string reason)
+        {
+            ItemsChanged?.Invoke(GetItems(), reason);
         }
 
         [STAThread]
@@ -38,6 +82,7 @@ namespace DDSW_L_1
             if (usersList != null) DataSaver<User>.SaveData(usersList);
             if (itemsList != null) DataSaver<Item>.SaveData(itemsList);
             if (customerItems != null) DataSaver<Item>.SaveData(customerItems, "CustomerItem");
+            if (previousStateItems != null) DataSaver<Item>.SaveData(previousStateItems, "PreviousStateItem");
         }
     }
 }

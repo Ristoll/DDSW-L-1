@@ -32,9 +32,10 @@
             numericUpDown1 = new NumericUpDown();
             button1 = new Button();
             button2 = new Button();
-            domainUpDown1 = new DomainUpDown();
             label1 = new Label();
             label2 = new Label();
+            comboBox1 = new ComboBox();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -43,7 +44,7 @@
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(59, 40);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(238, 364);
+            listBox1.Size = new Size(238, 344);
             listBox1.TabIndex = 0;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -75,15 +76,6 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // domainUpDown1
-            // 
-            domainUpDown1.Location = new Point(572, 90);
-            domainUpDown1.Name = "domainUpDown1";
-            domainUpDown1.Size = new Size(150, 27);
-            domainUpDown1.TabIndex = 4;
-            domainUpDown1.Text = "domainUpDown1";
-            domainUpDown1.SelectedItemChanged += domainUpDown1_SelectedItemChanged;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -102,14 +94,34 @@
             label2.TabIndex = 6;
             label2.Text = "Reason";
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(563, 90);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 7;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(124, 390);
+            button3.Name = "button3";
+            button3.Size = new Size(97, 29);
+            button3.TabIndex = 8;
+            button3.Text = "Delete Item";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // CargoDisposalWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button3);
+            Controls.Add(comboBox1);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(domainUpDown1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(numericUpDown1);
@@ -128,8 +140,9 @@
         private NumericUpDown numericUpDown1;
         private Button button1;
         private Button button2;
-        private DomainUpDown domainUpDown1;
         private Label label1;
         private Label label2;
+        private ComboBox comboBox1;
+        private Button button3;
     }
 }

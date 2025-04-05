@@ -1,10 +1,10 @@
 ﻿namespace DDSW_L_1
 {
-    public partial class CargoAcceptanceWindow : Form
+    public partial class CargoApprovalWindow : Form
     {
         List<List<Item>> deliveriesData = DataSaver<List<Item>>.LoadFilesData(EStringData.Delivery);
         int listBox1Index;
-        public CargoAcceptanceWindow()
+        public CargoApprovalWindow()
         {
             InitializeComponent();
             MainOperationsFunc.LoadItems(listBox3, true);
@@ -28,7 +28,7 @@
         {
             MainOperationsFunc.ApproveMoving(listBox1, listBox2, listBox3, deliveriesData, listBox1Index, false);
             MainOperationsFunc.UpdateListBox(Program.GetItems(), listBox3, true);
-            Program.InvokeItemsChanged();
+            Program.InvokeItemsChanged("New Cargo Approval");
         }
 
         private void button2_Click(object sender, EventArgs e)

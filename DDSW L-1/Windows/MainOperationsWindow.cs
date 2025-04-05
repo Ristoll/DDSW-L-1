@@ -15,7 +15,7 @@
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CargoAcceptanceWindow cargoAcceptanceWindow = new CargoAcceptanceWindow();
+            CargoApprovalWindow cargoAcceptanceWindow = new CargoApprovalWindow();
             cargoAcceptanceWindow.ShowDialog();
         }
 

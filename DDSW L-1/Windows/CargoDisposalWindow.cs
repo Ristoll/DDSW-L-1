@@ -2,12 +2,14 @@
 {
     public partial class CargoDisposalWindow : Form
     {
-        int listBox1Index;
+        public int ListBox1Index;
+        public int ReasonIndex;
         public CargoDisposalWindow()
         {
             InitializeComponent();
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
-            MainOperationsFunc.FillDomainUpDown(domainUpDown1, EStringData.Reason);
+
+            MainOperationsFunc.FillComboBox(comboBox1, EStringData.Reason);
             MainOperationsFunc.LoadItems(listBox1, true);
         }
 
@@ -28,7 +30,7 @@
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBox1Index = listBox1.SelectedIndex;
+            ListBox1Index = listBox1.SelectedIndex;
         }
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
@@ -38,7 +40,18 @@
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainOperationsFunc.UtilizeSelectedItem(listBox1, numericUpDown1.Value, listBox1Index);
+            MainOperationsFunc.UtilizeSelectedItem(listBox1, numericUpDown1.Value, ListBox1Index);
+            Program.InvokeItemsChanged($"Utilization Because Of The Reason: {comboBox1.Items[ReasonIndex].ToString()}");
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MainOperationsFunc.DeleteItem(listBox1, ListBox1Index);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DDSW_L_1
 {
-    partial class CargoAcceptanceWindow
+    partial class CargoApprovalWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -55,14 +55,14 @@
             button1.Name = "button1";
             button1.Size = new Size(107, 39);
             button1.TabIndex = 14;
-            button1.Text = "Corfirm";
+            button1.Text = "Approve";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(584, 26);
+            label3.Location = new Point(618, 26);
             label3.Name = "label3";
             label3.Size = new Size(111, 20);
             label3.TabIndex = 13;
@@ -121,7 +121,7 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // CargoAcceptanceWindow
+            // CargoApprovalWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -135,8 +135,8 @@
             Controls.Add(label1);
             Controls.Add(listBox2);
             Controls.Add(listBox1);
-            Name = "CargoAcceptanceWindow";
-            Text = "CargoAcceptanceWindow";
+            Name = "CargoApprovalWindow";
+            Text = "CargoApprovalWindow";
             Load += CargoAcceptanceWindow_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -116,6 +116,23 @@ namespace DDSW_L_1
             orderedItems.RemoveAt(selectedIndex);
             UpdateListBox(Program.GetCustomerItems(), mainListBox, true);
         }
+        public static void DeleteItem(ListBox listBox, int selectedIndex)
+        {
+            if (selectedIndex >= 0 && selectedIndex < listBox.Items.Count)
+            {
+                // Видаляємо елемент зі списку
+                Program.GetItems().RemoveAt(selectedIndex);
+
+                // Оновлюємо ListBox після видалення
+                UpdateListBox(Program.GetItems(), listBox, true);
+                DataSaver<Item>.SaveData(Program.GetItems());
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public static void LoadReportsToListBox(ListBox listBox)
         {
             string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
@@ -210,12 +227,9 @@ namespace DDSW_L_1
             if (index != null)
             {
                 Program.GetItems()[index].SetCount(Program.GetItems()[index].Count - (int)quantity);
+                Program.GetCustomerItems()[index].SetCount(Program.GetCustomerItems()[index].Count - (int)quantity);
                 UpdateListBox(Program.GetItems(), listBox, true);
             }
-        }
-        public static void CreateItem()
-        {
-            
         }
     }
 }

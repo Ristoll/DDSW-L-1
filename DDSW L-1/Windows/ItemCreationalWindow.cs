@@ -86,10 +86,10 @@ namespace DDSW_L_1
             }
             Item newItem = new Item(type, name, count, brand);
             Program.GetItems().Add(newItem);
-            Program.InvokeItemsChanged();
+            Program.InvokeItemsChanged("Brand-New Cargo Approval");
             MessageBox.Show("Item created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
-            CargoAcceptanceWindow cargoAcceptanceWindow = new CargoAcceptanceWindow();
+            CargoApprovalWindow cargoAcceptanceWindow = new CargoApprovalWindow();
             cargoAcceptanceWindow.ShowDialog();
         }
 
