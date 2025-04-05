@@ -39,7 +39,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(352, 388);
+            button3.Location = new Point(458, 388);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
             button3.TabIndex = 15;
@@ -50,32 +50,33 @@
             // listBox2
             // 
             listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(487, 33);
+            listBox2.Location = new Point(569, 33);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(301, 384);
+            listBox2.Size = new Size(219, 384);
             listBox2.TabIndex = 14;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(12, 33);
+            listBox1.Location = new Point(223, 32);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(301, 344);
+            listBox1.Size = new Size(204, 324);
             listBox1.TabIndex = 13;
             // 
             // button1
             // 
-            button1.Location = new Point(109, 388);
+            button1.Location = new Point(285, 388);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 10;
             button1.Text = "Accept";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(109, 9);
+            label1.Location = new Point(285, 9);
             label1.Name = "label1";
             label1.Size = new Size(81, 20);
             label1.TabIndex = 16;
@@ -84,7 +85,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(591, 9);
+            label2.Location = new Point(641, 9);
             label2.Name = "label2";
             label2.Size = new Size(97, 20);
             label2.TabIndex = 17;
@@ -92,12 +93,13 @@
             // 
             // button2
             // 
-            button2.Location = new Point(352, 33);
+            button2.Location = new Point(458, 33);
             button2.Name = "button2";
             button2.Size = new Size(94, 60);
             button2.TabIndex = 18;
             button2.Text = "Add item manually";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // CargoAcceptanceWindow
             // 

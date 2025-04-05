@@ -1,4 +1,7 @@
-﻿namespace DDSW_L_1
+﻿using Mysqlx.Crud;
+using System;
+
+namespace DDSW_L_1
 {
     public class MainOperationsFunc
     {
@@ -183,6 +186,38 @@
             UpdateListBox(Program.GetItems(), mainListBox, true);
             
         }
+        public static void FillComboBox(ComboBox comboBox, bool isBrand)
+        {
+            List<string> items;
+            if (isBrand)
+            {
+                items = DataSaver<string>.LoadFeatures(true);
+            }
+            else
+            {
+                items = DataSaver<string>.LoadFeatures(false);
+            }
+            items.Add("Add New...");
+
+            comboBox.DataSource = null;
+            comboBox.DataSource = items;
+        }
+        /*public static void ApproveNewCargo(ListBox cargoListBox, ListBox mainListBox, List<Item> newItems)
+        {
+            foreach (var newItem in newItems)
+            {
+                Item stockItem = Program.GetItems().FirstOrDefault(i => i.Name == newItem.Name && i.Brand == newItem.Brand);
+
+                if (stockItem != null)
+                {
+                    stockItem.Count += newItem.Count;
+                }
+            }
+            cargoListBox.Items.Clear();
+            DataSaver<Item>.SaveData(Program.GetItems());
+            UpdateListBox(Program.GetItems(), mainListBox, true);
+        }*/
+
     }
 }
 

@@ -4,19 +4,82 @@ namespace DDSW_L_1
 {
     public class Item
     {
+        private List<string> _types = DataSaver<string>.LoadFeatures(true);
+        private List<string> _brands = DataSaver<string>.LoadFeatures(false);
+        [JsonInclude]
+        private string _brand;
+        [JsonInclude]
+        private string _type;
         [JsonInclude]
         public string Name { get; set; }
         [JsonInclude]
         public int Count { get; set; }
         [JsonInclude]
-        public EType Type { get; set; }
+        public string Type 
+        {
+            get => _type;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    MessageBox.Show("Brand cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                var typeToSet = value.Trim();
+
+                if (!File.Exists(DataSaver<string>.TypeFilePath))
+                {
+                    File.WriteAllText(DataSaver<string>.BrandFilePath, "");
+                }
+
+                var existingBrands = File.ReadAllLines(DataSaver<string>.TypeFilePath)
+                                         .Select(b => b.Trim())
+                                         .Where(b => !string.IsNullOrWhiteSpace(b))
+                                         .ToList();
+
+                if (!existingBrands.Contains(typeToSet, StringComparer.OrdinalIgnoreCase))
+                {
+                    File.AppendAllText(DataSaver<string>.TypeFilePath, typeToSet + Environment.NewLine);
+                }
+
+                _type = typeToSet;
+            }
+        }
         [JsonInclude]
-        public EBrand Brand { get; set; }
+        public string Brand { 
+            get => _brand;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    MessageBox.Show("Brand cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                var brandToSet = value.Trim();
+
+                if (!File.Exists(DataSaver<string>.BrandFilePath))
+                {
+                    File.WriteAllText(DataSaver<string>.BrandFilePath, "");
+                }
+
+                var existingBrands = File.ReadAllLines(DataSaver<string>.BrandFilePath)
+                                         .Select(b => b.Trim())
+                                         .Where(b => !string.IsNullOrWhiteSpace(b))
+                                         .ToList();
+
+                if (!existingBrands.Contains(brandToSet, StringComparer.OrdinalIgnoreCase))
+                {
+                    File.AppendAllText(DataSaver<string>.BrandFilePath, brandToSet + Environment.NewLine);
+                }
+
+                _brand = brandToSet;
+            }
+        }
 
         public Item() { }
 
         [JsonConstructor]
-        public Item(EType type, string name, int count, EBrand brand)
+        public Item(string type, string name, int count,string brand)
         {
             Type = type;
             Name = name;

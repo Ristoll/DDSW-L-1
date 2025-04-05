@@ -59,5 +59,15 @@ namespace DDSW_L_1.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _446_4464013_data_database_server_sql_storage_icon_fleet_management_infographics {
+            get {
+                object obj = ResourceManager.GetObject("446-4464013_data-database-server-sql-storage-icon-fleet-management-infographics", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -1,9 +1,12 @@
-﻿using System.Text.Json;
+﻿using System.IO;
+using System.Text.Json;
 
 namespace DDSW_L_1
 {
     public static class DataSaver<T>
     {
+        public static string BrandFilePath = "BrandsData.txt";
+        public static string TypeFilePath = "TypesData.txt";
         public static void SaveData(List<T> dataList)
         {
             string fileName = $"{typeof(T).Name}sData.txt";
@@ -136,6 +139,50 @@ namespace DDSW_L_1
             {
                 MessageBox.Show("File not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public static void AddFeature(string brand, bool isBrand)
+        {
+            string path;
+            if (isBrand)
+            {
+                path = BrandFilePath;
+            }
+            else
+            {
+               path = TypeFilePath;
+            }
+
+            List<string> brands = File.ReadAllLines(path).ToList();
+
+            if (!brands.Contains(brand, StringComparer.OrdinalIgnoreCase))
+            {
+                File.AppendAllText(path, brand + Environment.NewLine);
+            }
+        }
+        public static List<string> LoadFeatures(bool isBrand)
+        {
+            string filePath;
+            if(isBrand)
+            {
+                filePath = "BrandsData.txt";
+            }
+            else
+            {
+                filePath = "TypesData.txt";
+            }
+
+            if (!File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, "");
+                return new List<string>();
+            }
+
+            var lines = File.ReadAllLines(filePath)
+                            .Where(line => !string.IsNullOrWhiteSpace(line))
+                            .Select(line => line.Trim())
+                            .ToList();
+
+            return lines;
         }
     }
 }

@@ -24,5 +24,10 @@
             CargoDisposalWindow cargoDisposalWindow = new CargoDisposalWindow();
             cargoDisposalWindow.ShowDialog();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
