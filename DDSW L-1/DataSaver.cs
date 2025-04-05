@@ -7,6 +7,9 @@ namespace DDSW_L_1
     {
         public static string BrandFilePath = "BrandsData.txt";
         public static string TypeFilePath = "TypesData.txt";
+        public static string OrderFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
+        public static string DeliveryFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Deliveries";
+
         public static void SaveData(List<T> dataList)
         {
             string fileName = $"{typeof(T).Name}sData.txt";
@@ -57,9 +60,17 @@ namespace DDSW_L_1
                 return result ?? new List<T>();
             }
         }
-        public static List<List<Item>> LoadOrdersData()
+        public static List<List<Item>> LoadFilesData(bool isOrder)
         {
-            string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
+            string folderPath;
+            if (isOrder)
+            {
+                folderPath = OrderFolderPath;
+            }
+            else
+            {
+                folderPath = DeliveryFolderPath;
+            }
             try
             {
                 if (!Directory.Exists(folderPath))
@@ -92,10 +103,17 @@ namespace DDSW_L_1
             }
         }
 
-        public static void LoadReportsToListBox(ListBox listBox)
+        public static void LoadFilesToListBox(ListBox listBox, bool isOrder)
         {
-            string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
-
+            string folderPath;
+            if (isOrder)
+            {
+                folderPath = OrderFolderPath;
+            }
+            else
+            {
+                folderPath = DeliveryFolderPath;
+            }
             try
             {
                 // Перевіряємо, чи існує вказана папка

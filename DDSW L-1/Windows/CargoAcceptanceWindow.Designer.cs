@@ -28,91 +28,113 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
+            label3 = new Label();
+            listBox3 = new ListBox();
+            label2 = new Label();
+            label1 = new Label();
             listBox2 = new ListBox();
             listBox1 = new ListBox();
-            button1 = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
-            // button3
+            // button2
             // 
-            button3.Location = new Point(458, 388);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 15;
-            button3.Text = "Exit";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(569, 33);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(219, 384);
-            listBox2.TabIndex = 14;
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(223, 32);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(204, 324);
-            listBox1.TabIndex = 13;
+            button2.Location = new Point(618, 386);
+            button2.Name = "button2";
+            button2.Size = new Size(107, 39);
+            button2.TabIndex = 15;
+            button2.Text = "Exit";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(285, 388);
+            button1.Location = new Point(343, 386);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 10;
-            button1.Text = "Accept";
+            button1.Size = new Size(107, 39);
+            button1.TabIndex = 14;
+            button1.Text = "Corfirm";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // label1
+            // label3
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(285, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(81, 20);
-            label1.TabIndex = 16;
-            label1.Text = "New cargo";
+            label3.AutoSize = true;
+            label3.Location = new Point(584, 26);
+            label3.Name = "label3";
+            label3.Size = new Size(111, 20);
+            label3.TabIndex = 13;
+            label3.Text = "Current storage";
+            // 
+            // listBox3
+            // 
+            listBox3.FormattingEnabled = true;
+            listBox3.Location = new Point(547, 61);
+            listBox3.Name = "listBox3";
+            listBox3.Size = new Size(242, 304);
+            listBox3.TabIndex = 12;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(641, 9);
+            label2.Location = new Point(363, 26);
             label2.Name = "label2";
-            label2.Size = new Size(97, 20);
-            label2.TabIndex = 17;
-            label2.Text = "Current items";
+            label2.Size = new Size(67, 20);
+            label2.TabIndex = 11;
+            label2.Text = "Сontents";
             // 
-            // button2
+            // label1
             // 
-            button2.Location = new Point(458, 33);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 60);
-            button2.TabIndex = 18;
-            button2.Text = "Add item manually";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            label1.AutoSize = true;
+            label1.Location = new Point(84, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(63, 20);
+            label1.TabIndex = 10;
+            label1.Text = "Delivery";
+            // 
+            // listBox2
+            // 
+            listBox2.FormattingEnabled = true;
+            listBox2.Location = new Point(264, 61);
+            listBox2.Name = "listBox2";
+            listBox2.Size = new Size(257, 304);
+            listBox2.TabIndex = 9;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(12, 61);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(225, 364);
+            listBox1.TabIndex = 8;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(488, 380);
+            button3.Name = "button3";
+            button3.Size = new Size(107, 51);
+            button3.TabIndex = 16;
+            button3.Text = "Add New Item";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // CargoAcceptanceWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button3);
             Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(label3);
+            Controls.Add(listBox3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button3);
             Controls.Add(listBox2);
             Controls.Add(listBox1);
-            Controls.Add(button1);
             Name = "CargoAcceptanceWindow";
             Text = "CargoAcceptanceWindow";
             Load += CargoAcceptanceWindow_Load;
@@ -122,12 +144,14 @@
 
         #endregion
 
-        private Button button3;
+        private Button button2;
+        private Button button1;
+        private Label label3;
+        private ListBox listBox3;
+        private Label label2;
+        private Label label1;
         private ListBox listBox2;
         private ListBox listBox1;
-        private Button button1;
-        private Label label1;
-        private Label label2;
-        private Button button2;
+        private Button button3;
     }
 }

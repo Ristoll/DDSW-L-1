@@ -152,7 +152,7 @@ namespace DDSW_L_1
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static void ApproveDelivery(ListBox orders, ListBox orderItemsBox, ListBox mainListBox, List<List<Item>> items, int index)
+        public static void ApproveMoving(ListBox orders, ListBox orderItemsBox, ListBox mainListBox, List<List<Item>> items, int index, bool isOrder)
         {
             string selectedFileName = orders.Items[index]?.ToString();
             if (index == -1)
@@ -168,13 +168,21 @@ namespace DDSW_L_1
 
                 if (stockItem != null)
                 {
-                    if (stockItem.Count > orderedItem.Count)
+                    if (isOrder)
                     {
-                        stockItem.Count -= orderedItem.Count;
+                        if (stockItem.Count > orderedItem.Count)
+                        {
+                            stockItem.Count -= orderedItem.Count;
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Not enough stock for {stockItem.Name} {stockItem.Brand}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
                     }
                     else
                     {
-                        MessageBox.Show($"Not enough stock for {stockItem.Name} {stockItem.Brand}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       stockItem.Count += orderedItem.Count;
                     }
                 }
             }
@@ -202,21 +210,6 @@ namespace DDSW_L_1
             comboBox.DataSource = null;
             comboBox.DataSource = items;
         }
-        /*public static void ApproveNewCargo(ListBox cargoListBox, ListBox mainListBox, List<Item> newItems)
-        {
-            foreach (var newItem in newItems)
-            {
-                Item stockItem = Program.GetItems().FirstOrDefault(i => i.Name == newItem.Name && i.Brand == newItem.Brand);
-
-                if (stockItem != null)
-                {
-                    stockItem.Count += newItem.Count;
-                }
-            }
-            cargoListBox.Items.Clear();
-            DataSaver<Item>.SaveData(Program.GetItems());
-            UpdateListBox(Program.GetItems(), mainListBox, true);
-        }*/
 
     }
 }

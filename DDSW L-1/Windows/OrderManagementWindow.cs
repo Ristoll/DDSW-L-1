@@ -4,13 +4,13 @@ namespace DDSW_L_1
 {
     public partial class OrderManagementWindow : Form
     {
-        List<List<Item>> ordersData = DataSaver<List<Item>>.LoadOrdersData();
+        List<List<Item>> ordersData = DataSaver<List<Item>>.LoadFilesData(true);
         int listBox1Index;
         public OrderManagementWindow()
         {
             InitializeComponent();
             MainOperationsFunc.LoadItems(listBox3, true);
-            DataSaver<string>.LoadReportsToListBox(listBox1);
+            DataSaver<string>.LoadFilesToListBox(listBox1, true);
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
         }
 
@@ -21,7 +21,7 @@ namespace DDSW_L_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainOperationsFunc.ApproveDelivery(listBox1, listBox2, listBox3, ordersData, listBox1Index);
+            MainOperationsFunc.ApproveMoving(listBox1, listBox2, listBox3, ordersData, listBox1Index, true);
             MainOperationsFunc.UpdateListBox(Program.GetItems(), listBox3, true);
             Program.InvokeItemsChanged();
         }
