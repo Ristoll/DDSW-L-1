@@ -7,6 +7,7 @@ namespace DDSW_L_1
     {
         public static string BrandFilePath = "BrandsData.txt";
         public static string TypeFilePath = "TypesData.txt";
+        public static string ReasonsFilePath = "ReasonsData.txt";
         public static string OrderFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
         public static string DeliveryFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Deliveries";
 
@@ -177,16 +178,29 @@ namespace DDSW_L_1
                 File.AppendAllText(path, brand + Environment.NewLine);
             }
         }
-        public static List<string> LoadFeatures(bool isBrand)
+        public static List<string> LoadFeatures(EStringData stringData)
         {
             string filePath;
-            if(isBrand)
+            try
             {
-                filePath = "BrandsData.txt";
-            }
-            else
+                switch (stringData)
+                {
+                    case EStringData.Brand:
+                        filePath = BrandFilePath;
+                        break;
+                    case EStringData.Type:
+                        filePath = TypeFilePath;
+                        break;
+                    case EStringData.Reason:
+                        filePath = ReasonsFilePath;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(stringData), stringData, null);
+                }
+            }catch (Exception ex)
             {
-                filePath = "TypesData.txt";
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<string>();
             }
 
             if (!File.Exists(filePath))

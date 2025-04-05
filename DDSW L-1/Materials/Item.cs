@@ -4,8 +4,8 @@ namespace DDSW_L_1
 {
     public class Item
     {
-        private List<string> _types = DataSaver<string>.LoadFeatures(true);
-        private List<string> _brands = DataSaver<string>.LoadFeatures(false);
+        private List<string> _types = DataSaver<string>.LoadFeatures(EStringData.Type);
+        private List<string> _brands = DataSaver<string>.LoadFeatures(EStringData.Brand);
         [JsonInclude]
         private string _brand;
         [JsonInclude]

@@ -199,11 +199,11 @@ namespace DDSW_L_1
             List<string> items;
             if (isBrand)
             {
-                items = DataSaver<string>.LoadFeatures(true);
+                items = DataSaver<string>.LoadFeatures(EStringData.Brand);
             }
             else
             {
-                items = DataSaver<string>.LoadFeatures(false);
+                items = DataSaver<string>.LoadFeatures(EStringData.Type);
             }
             items.Add("Add New...");
 
