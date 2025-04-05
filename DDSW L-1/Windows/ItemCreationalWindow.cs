@@ -12,16 +12,30 @@ namespace DDSW_L_1
 {
     public partial class ItemCreationalWindow : Form
     {
+        public int TypeIndex;
+        public int BrandIndex;
         public ItemCreationalWindow()
         {
             InitializeComponent();
-            MainOperationsFunc.FillComboBox(comboBox1, true);
-            MainOperationsFunc.FillComboBox(comboBox2, false);
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            MainOperationsFunc.FillComboBox(comboBox1, EStringData.Type);
+            MainOperationsFunc.FillComboBox(comboBox2, EStringData.Brand);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            TypeIndex = comboBox1.SelectedIndex;
+            if (TypeIndex == comboBox1.Items.Count - 1)
+            {
+                label5.Visible = true;
+                textBox3.Visible = true;
+            }
+            else
+            {
+                label5.Visible = false;
+                textBox3.Visible = false;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -32,6 +46,66 @@ namespace DDSW_L_1
         private void ItemCreationalWindow_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string type;
+            string brand;
+            string name = textBox1.Text;
+            int count;
+            if (TypeIndex == comboBox1.Items.Count - 1)
+            {
+                type = textBox3.Text;
+                if (!DataSaver<string>.LoadFeatures(EStringData.Type).Contains(type, StringComparer.OrdinalIgnoreCase))
+                {
+                    DataSaver<string>.AddFeature(type, EStringData.Type);
+                }
+            }
+            else
+            {
+                type = comboBox1.SelectedItem.ToString();
+            }
+            if (BrandIndex == comboBox2.Items.Count - 1)
+            {
+                brand = textBox4.Text;
+                if (!DataSaver<string>.LoadFeatures(EStringData.Brand).Contains(brand, StringComparer.OrdinalIgnoreCase))
+                {
+                    DataSaver<string>.AddFeature(brand, EStringData.Brand);
+                }
+            }
+            else
+            {
+                brand = comboBox2.SelectedItem.ToString();
+            }
+
+            if (!int.TryParse(textBox2.Text, out count))
+            {
+                MessageBox.Show("Invalid count value.\nInput integer!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Item newItem = new Item(type, name, count, brand);
+            Program.GetItems().Add(newItem);
+            Program.InvokeItemsChanged();
+            MessageBox.Show("Item created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
+            CargoAcceptanceWindow cargoAcceptanceWindow = new CargoAcceptanceWindow();
+            cargoAcceptanceWindow.ShowDialog();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BrandIndex = comboBox2.SelectedIndex;
+            if (BrandIndex == comboBox2.Items.Count - 1)
+            {
+                label6.Visible = true;
+                textBox4.Visible = true;
+            }
+            else
+            {
+                label6.Visible = false;
+                textBox4.Visible = false;
+            }
         }
     }
 }

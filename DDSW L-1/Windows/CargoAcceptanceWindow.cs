@@ -2,13 +2,13 @@
 {
     public partial class CargoAcceptanceWindow : Form
     {
-        List<List<Item>> deliveriesData = DataSaver<List<Item>>.LoadFilesData(false);
+        List<List<Item>> deliveriesData = DataSaver<List<Item>>.LoadFilesData(EStringData.Delivery);
         int listBox1Index;
         public CargoAcceptanceWindow()
         {
             InitializeComponent();
             MainOperationsFunc.LoadItems(listBox3, true);
-            DataSaver<string>.LoadFilesToListBox(listBox1, EStringData.Order);
+            DataSaver<string>.LoadFilesToListBox(listBox1, EStringData.Delivery);
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
         }
 
@@ -40,6 +40,7 @@
         {
             ItemCreationalWindow itemCreationalWindow = new ItemCreationalWindow();
             itemCreationalWindow.ShowDialog();
+            this.Close();
         }
     }
 }

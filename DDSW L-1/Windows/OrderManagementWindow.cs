@@ -4,7 +4,7 @@ namespace DDSW_L_1
 {
     public partial class OrderManagementWindow : Form
     {
-        List<List<Item>> ordersData = DataSaver<List<Item>>.LoadFilesData(true);
+        List<List<Item>> ordersData = DataSaver<List<Item>>.LoadFilesData(EStringData.Order);
         int listBox1Index;
         public OrderManagementWindow()
         {
@@ -36,6 +36,11 @@ namespace DDSW_L_1
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

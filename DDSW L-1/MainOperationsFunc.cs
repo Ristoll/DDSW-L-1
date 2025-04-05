@@ -61,12 +61,12 @@ namespace DDSW_L_1
                     return;
                 }
 
-                Item selectedItem = Program.GetItems()[mainIndex];
+                Item selectedItem = Program.GetCustomerItems()[mainIndex];
                 int selectedValue = quantity;
 
-                if (Program.GetCustomerItems()[mainIndex].Count < selectedValue || Program.GetCustomerItems()[mainIndex].Count == 0)
+                if (selectedItem.Count < selectedValue || selectedItem.Count == 0)
                 {
-                    MessageBox.Show($"There is not enough stock.\n{Program.GetCustomerItems()[mainIndex].Count} available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"There is not enough stock.\n{selectedItem.Count} available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -74,21 +74,18 @@ namespace DDSW_L_1
                 if (existingItem != null)
                 {
                     existingItem.SetCount(existingItem.Count + selectedValue);
-
-                    Program.GetCustomerItems()[mainIndex].SetCount(Program.GetCustomerItems()[mainIndex].Count - selectedValue);
-                    UpdateListBox(Program.GetCustomerItems(), mainListBox, true);
-                    UpdateListBox(orderedItems, orderListBox, false);
-                    DataSaver<Item>.SaveData(Program.GetCustomerItems(), "CustomerItem");
-
-                    return;
+                }
+                else
+                {
+                    Item itemToOrder = new Item(selectedItem.Type, selectedItem.Name, selectedValue, selectedItem.Brand);
+                    orderedItems.Add(itemToOrder);
+                    orderListBox.Items.Add($"{itemToOrder.Name} {itemToOrder.Brand} - {itemToOrder.Count}");
                 }
 
-                selectedItem.SetCount(selectedValue);
-                orderedItems.Add(selectedItem);
-                orderListBox.Items.Add($"{selectedItem.Name} {selectedItem.Brand} - {selectedItem.Count}");
+                selectedItem.SetCount(selectedItem.Count - selectedValue);
 
-                Program.GetCustomerItems()[mainIndex].SetCount(Program.GetCustomerItems()[mainIndex].Count - selectedValue);
                 UpdateListBox(Program.GetCustomerItems(), mainListBox, true);
+                UpdateListBox(orderedItems, orderListBox, false);
                 DataSaver<Item>.SaveData(Program.GetCustomerItems(), "CustomerItem");
             }
             catch (ArgumentOutOfRangeException)
@@ -96,6 +93,7 @@ namespace DDSW_L_1
                 MessageBox.Show("Select item from left list of items to continue", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public static void SetCounterValue(ListBox mainListBox, NumericUpDown numericUpDown)
         {
             if (mainListBox.SelectedIndex == -1)
@@ -170,19 +168,19 @@ namespace DDSW_L_1
                 {
                     if (isOrder)
                     {
-                        if (stockItem.Count > orderedItem.Count)
+                        if (stockItem.Count >= orderedItem.Count)
                         {
                             stockItem.Count -= orderedItem.Count;
                         }
                         else
                         {
                             MessageBox.Show($"Not enough stock for {stockItem.Name} {stockItem.Brand}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                            return;
                         }
                     }
                     else
                     {
-                       stockItem.Count += orderedItem.Count;
+                        stockItem.Count += orderedItem.Count;
                     }
                 }
             }
@@ -192,19 +190,11 @@ namespace DDSW_L_1
             DataSaver<Item>.DeleteFile(selectedFileName);
             DataSaver<Item>.SaveData(Program.GetItems());
             UpdateListBox(Program.GetItems(), mainListBox, true);
-            
+
         }
-        public static void FillComboBox(ComboBox comboBox, bool isBrand)
+        public static void FillComboBox(ComboBox comboBox, EStringData stringData)
         {
-            List<string> items;
-            if (isBrand)
-            {
-                items = DataSaver<string>.LoadFeatures(EStringData.Brand);
-            }
-            else
-            {
-                items = DataSaver<string>.LoadFeatures(EStringData.Type);
-            }
+            List<string> items = DataSaver<string>.LoadFeatures(stringData);
             items.Add("Add New...");
 
             comboBox.DataSource = null;
@@ -219,14 +209,15 @@ namespace DDSW_L_1
         {
             if (index != null)
             {
-                    Program.GetItems()[index].SetCount(Program.GetItems()[index].Count - (int)quantity);
-                    UpdateListBox(Program.GetItems(), listBox, true);
-                }
+                Program.GetItems()[index].SetCount(Program.GetItems()[index].Count - (int)quantity);
+                UpdateListBox(Program.GetItems(), listBox, true);
             }
         }
-
+        public static void CreateItem()
+        {
+            
+        }
     }
 }
-
 
 

@@ -31,11 +31,30 @@ namespace DDSW_L_1
         [STAThread]
         static void Main()
         {
+            
             ApplicationConfiguration.Initialize();
             Application.Run(new AuthorizationWindow());
 
             if (usersList != null) DataSaver<User>.SaveData(usersList);
             if (itemsList != null) DataSaver<Item>.SaveData(itemsList);
+            if (customerItems != null) DataSaver<Item>.SaveData(customerItems, "CustomerItem");
         }
     }
 }
+/*
+ *
+            itemsList.Add(new Item("Structural", "Brick", 100, "Wienerberger"));
+            itemsList.Add(new Item("Finishing", "Plaster", 50, "Knauf"));
+            itemsList.Add(new Item("Roofing", "Tile", 200, "Braas"));
+            itemsList.Add(new Item("WindowsAndDoors", "Window", 10, "Veka"));
+            itemsList.Add(new Item("Mixtures", "Concrete", 500, "Heidelberg"));
+            itemsList.Add(new Item("Plumbing", "Pipe", 300, "Rehau"));
+            itemsList.Add(new Item("Heating", "Radiator", 150, "Kermi"));
+            itemsList.Add(new Item("Specialised", "Insulation", 80, "Isover"));
+            itemsList.Add(new Item("Structural", "Steel", 200, "ArcelorMittal"));
+            itemsList.Add(new Item("Finishing", "Paint", 60, "Dulux"));
+            itemsList.Add(new Item("Roofing", "Shingle", 120, "GAF"));
+            itemsList.Add(new Item("WindowsAndDoors", "Door", 15, "Hormann"));
+            itemsList.Add(new Item("Mixtures", "Mortar", 400, "Cemex"));
+            customerItems = itemsList;
+*/

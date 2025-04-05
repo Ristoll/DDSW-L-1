@@ -4,11 +4,9 @@ namespace DDSW_L_1
 {
     public class Item
     {
-        private List<string> _types = DataSaver<string>.LoadFeatures(EStringData.Type);
-        private List<string> _brands = DataSaver<string>.LoadFeatures(EStringData.Brand);
-        [JsonInclude]
+        public static List<string> Types = DataSaver<string>.LoadFeatures(EStringData.Type);
+        public static List<string> Brands = DataSaver<string>.LoadFeatures(EStringData.Brand);
         private string _brand;
-        [JsonInclude]
         private string _type;
         [JsonInclude]
         public string Name { get; set; }
@@ -86,7 +84,6 @@ namespace DDSW_L_1
             Count = count;
             Brand = brand;
         }
-
         public void SetCount(int count)
         {
             if (count < 0)

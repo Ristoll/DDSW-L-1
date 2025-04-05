@@ -93,17 +93,9 @@ namespace DDSW_L_1
                 return result ?? new List<T>();
             }
         }
-        public static List<List<Item>> LoadFilesData(bool isOrder)
+        public static List<List<Item>> LoadFilesData(EStringData stringData)
         {
-            string folderPath;
-            if (isOrder)
-            {
-                folderPath = OrderFolderPath;
-            }
-            else
-            {
-                folderPath = DeliveryFolderPath;
-            }
+            string folderPath = ChoosePath(stringData);
             try
             {
                 if (!Directory.Exists(folderPath))
@@ -177,15 +169,15 @@ namespace DDSW_L_1
                 MessageBox.Show("File not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static void AddFeature(string brand, EStringData stringData)
+        public static void AddFeature(string feature, EStringData stringData)
         {
             string path = ChoosePath(stringData);
 
             List<string> features = File.ReadAllLines(path).ToList();
 
-            if (!features.Contains(brand, StringComparer.OrdinalIgnoreCase))
+            if (!features.Contains(feature, StringComparer.OrdinalIgnoreCase))
             {
-                File.AppendAllText(path, brand + Environment.NewLine);
+                File.AppendAllText(path, feature + Environment.NewLine);
             }
         }
         public static List<string> LoadFeatures(EStringData stringData)
