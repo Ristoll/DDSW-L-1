@@ -63,6 +63,7 @@
             button1.TabIndex = 2;
             button1.Text = "Utilize";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -81,6 +82,7 @@
             domainUpDown1.Size = new Size(150, 27);
             domainUpDown1.TabIndex = 4;
             domainUpDown1.Text = "domainUpDown1";
+            domainUpDown1.SelectedItemChanged += domainUpDown1_SelectedItemChanged;
             // 
             // label1
             // 

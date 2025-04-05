@@ -10,7 +10,7 @@ namespace DDSW_L_1
         {
             InitializeComponent();
             MainOperationsFunc.LoadItems(listBox3, true);
-            DataSaver<string>.LoadFilesToListBox(listBox1, true);
+            DataSaver<string>.LoadFilesToListBox(listBox1, EStringData.Order);
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
         }
 

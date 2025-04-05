@@ -210,6 +210,20 @@ namespace DDSW_L_1
             comboBox.DataSource = null;
             comboBox.DataSource = items;
         }
+        public static void FillDomainUpDown(DomainUpDown domainUpDown, EStringData stringData)
+        {
+            domainUpDown.Items.Clear();
+            DataSaver<string>.LoadFeatures(stringData);
+        }
+        public static void UtilizeSelectedItem(ListBox listBox, decimal quantity, int index)
+        {
+            if (index != null)
+            {
+                    Program.GetItems()[index].SetCount(Program.GetItems()[index].Count - (int)quantity);
+                    UpdateListBox(Program.GetItems(), listBox, true);
+                }
+            }
+        }
 
     }
 }

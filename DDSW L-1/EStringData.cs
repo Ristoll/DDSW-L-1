@@ -4,6 +4,8 @@
     {
         Brand,
         Type,
-        Reason
+        Reason,
+        Order,
+        Delivery
     }
 }

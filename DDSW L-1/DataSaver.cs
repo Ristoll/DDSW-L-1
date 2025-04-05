@@ -10,7 +10,39 @@ namespace DDSW_L_1
         public static string ReasonsFilePath = "ReasonsData.txt";
         public static string OrderFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
         public static string DeliveryFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Deliveries";
-
+       
+        private static string ChoosePath(EStringData stringData)
+        {
+            string Path = "";
+            try
+            {
+                switch (stringData)
+                {
+                    case EStringData.Brand:
+                        Path = DataSaver<string>.BrandFilePath;
+                        break;
+                    case EStringData.Type:
+                        Path = DataSaver<string>.TypeFilePath;
+                        break;
+                    case EStringData.Reason:
+                        Path = DataSaver<string>.ReasonsFilePath;
+                        break;
+                    case EStringData.Order:
+                        Path = DataSaver<string>.OrderFolderPath;
+                        break;
+                    case EStringData.Delivery:
+                        Path = DataSaver<string>.DeliveryFolderPath;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(stringData), stringData, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return Path;
+        }
         public static void SaveData(List<T> dataList)
         {
             string fileName = $"{typeof(T).Name}sData.txt";
@@ -104,44 +136,30 @@ namespace DDSW_L_1
             }
         }
 
-        public static void LoadFilesToListBox(ListBox listBox, bool isOrder)
+        public static void LoadFilesToListBox(ListBox listBox, EStringData stringData)
         {
-            string folderPath;
-            if (isOrder)
-            {
-                folderPath = OrderFolderPath;
-            }
-            else
-            {
-                folderPath = DeliveryFolderPath;
-            }
+            string folderPath = ChoosePath(stringData);
             try
             {
-                // Перевіряємо, чи існує вказана папка
                 if (!Directory.Exists(folderPath))
                 {
                     MessageBox.Show("Folder does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Отримуємо всі файли в папці
                 string[] filePaths = Directory.GetFiles(folderPath);
 
-                // Очищаємо список перед додаванням нових елементів
                 listBox.Items.Clear();
 
                 foreach (string filePath in filePaths)
                 {
-                    // Отримуємо назву файлу
                     string fileName = Path.GetFileName(filePath);
 
-                    // Додаємо інформацію до списку
                     listBox.Items.Add(fileName);
                 }
             }
             catch (Exception ex)
             {
-                // Виводимо повідомлення про помилку, якщо виникла проблема
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -159,49 +177,20 @@ namespace DDSW_L_1
                 MessageBox.Show("File not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static void AddFeature(string brand, bool isBrand)
+        public static void AddFeature(string brand, EStringData stringData)
         {
-            string path;
-            if (isBrand)
-            {
-                path = BrandFilePath;
-            }
-            else
-            {
-               path = TypeFilePath;
-            }
+            string path = ChoosePath(stringData);
 
-            List<string> brands = File.ReadAllLines(path).ToList();
+            List<string> features = File.ReadAllLines(path).ToList();
 
-            if (!brands.Contains(brand, StringComparer.OrdinalIgnoreCase))
+            if (!features.Contains(brand, StringComparer.OrdinalIgnoreCase))
             {
                 File.AppendAllText(path, brand + Environment.NewLine);
             }
         }
         public static List<string> LoadFeatures(EStringData stringData)
         {
-            string filePath;
-            try
-            {
-                switch (stringData)
-                {
-                    case EStringData.Brand:
-                        filePath = BrandFilePath;
-                        break;
-                    case EStringData.Type:
-                        filePath = TypeFilePath;
-                        break;
-                    case EStringData.Reason:
-                        filePath = ReasonsFilePath;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(stringData), stringData, null);
-                }
-            }catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new List<string>();
-            }
+            string filePath = ChoosePath(stringData);
 
             if (!File.Exists(filePath))
             {
