@@ -21,7 +21,7 @@
 
         private void button3_Click(object sender, EventArgs e)
         {
-            CargoDisposalWindow cargoDisposalWindow = new CargoDisposalWindow();
+            CargoInventarisationWindow cargoDisposalWindow = new CargoInventarisationWindow();
             cargoDisposalWindow.ShowDialog();
         }
 

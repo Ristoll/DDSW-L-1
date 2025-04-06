@@ -1,4 +1,5 @@
 using DDSW_L_1.Windows;
+using System.Windows.Forms;
 
 namespace DDSW_L_1
 {
@@ -8,7 +9,7 @@ namespace DDSW_L_1
         ///  The main entry point for the application.
         /// </summary>
         /// 
-        public static event Action<List<Item>, string> ItemsChanged;
+        public static event Action<string> ItemsChanged;
         private static List<User> usersList = DataSaver<User>.LoadData() ?? new List<User>();
         private static List<Item> itemsList = DataSaver<Item>.LoadData() ?? new List<Item>();
         private static List<Item> customerItems = DataSaver<Item>.LoadData("CustomerItem") ?? new List<Item>();
@@ -31,33 +32,40 @@ namespace DDSW_L_1
             DataSaver<Item>.SaveData(previousStateItems, "PreviousStateItem");
         }
         public static Item? GetDeletedItem()
-        {    
-            if (itemsList.Count == previousStateItems.Count)
-            {
-                return null;
-            }
-            for (int i = 0; i < itemsList.Count; i++)
-            {
-                var item1 = itemsList[i];
-                var item2 = previousStateItems[i];
+        {
+            List<Item> mainList = DataSaver<Item>.LoadData();
+            List<Item> previousList = DataSaver<Item>.LoadData("PreviousStateItem");
 
-                if (item1.Name != item2.Name || item1.Brand != item2.Brand || item1.Count != item2.Count || item1.Type != item2.Type)
+            // Повертаємо перший елемент з previousList, якого немає в mainList
+            foreach (var prevItem in previousList)
+            {
+                bool found = mainList.Any(mainItem =>
+                    mainItem.Name == prevItem.Name &&
+                    mainItem.Brand == prevItem.Brand &&
+                    mainItem.Count == prevItem.Count &&
+                    mainItem.Type == prevItem.Type);
+
+                if (!found)
                 {
-                    return item2;
+                    return prevItem;
                 }
             }
+
             return null;
         }
+
         public static IEnumerable<string> CompareLists()
         {
-            if (itemsList.Count != previousStateItems.Count)
+            List<Item> mainList = DataSaver<Item>.LoadData();
+            List<Item> previousList = DataSaver<Item>.LoadData("PreviousStateItem");
+            if (mainList.Count != previousList.Count)
             {
                 yield break;
             }
-            for (int i = 0; i < itemsList.Count; i++)
+            for (int i = 0; i < mainList.Count; i++)
             {
-                var item1 = itemsList[i];
-                var item2 = previousStateItems[i];
+                var item1 = mainList[i];
+                var item2 = previousList[i];
 
                 if (item1.Name != item2.Name || item1.Brand != item2.Brand || item1.Count != item2.Count || item1.Type != item2.Type)
                 {
@@ -69,7 +77,7 @@ namespace DDSW_L_1
         }
         public static void InvokeItemsChanged(string reason)
         {
-            ItemsChanged?.Invoke(GetItems(), reason);
+            ItemsChanged?.Invoke(reason);
         }
 
         [STAThread]

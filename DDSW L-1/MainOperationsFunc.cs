@@ -120,12 +120,11 @@ namespace DDSW_L_1
         {
             if (selectedIndex >= 0 && selectedIndex < listBox.Items.Count)
             {
-                // Видаляємо елемент зі списку
                 Program.GetItems().RemoveAt(selectedIndex);
 
-                // Оновлюємо ListBox після видалення
                 UpdateListBox(Program.GetItems(), listBox, true);
                 DataSaver<Item>.SaveData(Program.GetItems());
+                Program.InvokeItemsChanged("Item Utilization");
             }
             else
             {
@@ -228,6 +227,17 @@ namespace DDSW_L_1
             {
                 Program.GetItems()[index].SetCount(Program.GetItems()[index].Count - (int)quantity);
                 Program.GetCustomerItems()[index].SetCount(Program.GetCustomerItems()[index].Count - (int)quantity);
+                DataSaver<Item>.SaveData(Program.GetItems());
+                UpdateListBox(Program.GetItems(), listBox, true);
+            }
+        }        
+        public static void AddToSelectedItem(ListBox listBox, decimal quantity, int index)
+        {
+            if (index != null)
+            {
+                Program.GetItems()[index].SetCount(Program.GetItems()[index].Count + (int)quantity);
+                Program.GetCustomerItems()[index].SetCount(Program.GetCustomerItems()[index].Count + (int)quantity);
+                DataSaver<Item>.SaveData(Program.GetItems());
                 UpdateListBox(Program.GetItems(), listBox, true);
             }
         }

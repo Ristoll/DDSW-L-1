@@ -1,10 +1,10 @@
 ﻿namespace DDSW_L_1
 {
-    public partial class CargoDisposalWindow : Form
+    public partial class CargoInventarisationWindow : Form
     {
         public int ListBox1Index;
         public int ReasonIndex;
-        public CargoDisposalWindow()
+        public CargoInventarisationWindow()
         {
             InitializeComponent();
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
@@ -33,22 +33,16 @@
             ListBox1Index = listBox1.SelectedIndex;
         }
 
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             MainOperationsFunc.UtilizeSelectedItem(listBox1, numericUpDown1.Value, ListBox1Index);
             Program.InvokeItemsChanged($"Utilization Because Of The Reason: {comboBox1.Items[ReasonIndex].ToString()}");
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-
+            MainOperationsFunc.AddToSelectedItem(listBox1, numericUpDown1.Value, ListBox1Index);
+            Program.InvokeItemsChanged($"Addition Because Of Recalculation");
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             MainOperationsFunc.DeleteItem(listBox1, ListBox1Index);

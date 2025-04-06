@@ -86,6 +86,7 @@ namespace DDSW_L_1
             }
             Item newItem = new Item(type, name, count, brand);
             Program.GetItems().Add(newItem);
+            DataSaver<Item>.SaveData(Program.GetItems());
             Program.InvokeItemsChanged("Brand-New Cargo Approval");
             MessageBox.Show("Item created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();

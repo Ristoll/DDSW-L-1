@@ -10,14 +10,16 @@ namespace DDSW_L_1
         }
         public static List<string> GetMessages()
         {
+            List<Item> mainList = DataSaver<Item>.LoadData();
+            List<Item> previousList = DataSaver<Item>.LoadData("PreviousStateItem");
             List<string> messages = new List<string>();
-            if (Program.GetItems().Count == Program.GetPreviousStateItems().Count)
+            if (mainList.Count == previousList.Count)
             {
                 bool areListsEqual = true;
-                for (int i = 0; i < Program.GetItems().Count; i++)
+                for (int i = 0; i < mainList.Count; i++)
                 {
-                    var item1 = Program.GetItems()[i];
-                    var item2 = Program.GetPreviousStateItems()[i];
+                    var item1 = mainList[i];
+                    var item2 = previousList[i];
 
                     if (item1.Name != item2.Name || item1.Brand != item2.Brand || item1.Count != item2.Count || item1.Type != item2.Type)
                     {
@@ -37,9 +39,9 @@ namespace DDSW_L_1
             }
             else
             {
-                if (Program.GetItems().Count > Program.GetPreviousStateItems().Count)
+                if (mainList.Count > previousList.Count)
                 {
-                    Item item = Program.GetItems()[Program.GetItems().Count - 1];
+                    Item item = mainList[mainList.Count - 1];
                     string message = $"+ new item {item.Type} {item.Brand} {item.Name} + {item.Count}";
                     messages.Add(message);
                 }
@@ -50,14 +52,10 @@ namespace DDSW_L_1
                     messages.Add(message);
                 }
             }
-            messages.Add("Nothing changed.");
             return messages;
         }
-        public void FillReport(List<Item> previousState, string reason)
+        public void FillReport(string reason)
         {
-            List<Item> items = Program.GetItems();
-            if (items == null || items.Count == 0) return;
-
             using (StreamWriter writer = new StreamWriter(FileName, true))
             {
                 writer.WriteLine($"\n--- Changes {DateTime.Now:yyyy-MM-dd HH:mm:ss} ---");

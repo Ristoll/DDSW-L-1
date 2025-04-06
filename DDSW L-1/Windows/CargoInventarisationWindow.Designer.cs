@@ -1,6 +1,6 @@
 ﻿namespace DDSW_L_1
 {
-    partial class CargoDisposalWindow
+    partial class CargoInventarisationWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,7 @@
             label2 = new Label();
             comboBox1 = new ComboBox();
             button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(511, 232);
+            button1.Location = new Point(442, 170);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 2;
@@ -101,7 +102,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 7;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // button3
             // 
@@ -113,11 +113,22 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // CargoDisposalWindow
+            // button4
+            // 
+            button4.Location = new Point(563, 170);
+            button4.Name = "button4";
+            button4.Size = new Size(94, 29);
+            button4.TabIndex = 9;
+            button4.Text = "Add";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += this.button4_Click;
+            // 
+            // CargoInventarisationWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(comboBox1);
             Controls.Add(label2);
@@ -126,8 +137,8 @@
             Controls.Add(button1);
             Controls.Add(numericUpDown1);
             Controls.Add(listBox1);
-            Name = "CargoDisposalWindow";
-            Text = "CargoDisposalWindow";
+            Name = "CargoInventarisationWindow";
+            Text = "CargoInventarisationWindow";
             Load += CargoDisposalWindow_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
@@ -144,5 +155,6 @@
         private Label label2;
         private ComboBox comboBox1;
         private Button button3;
+        private Button button4;
     }
 }

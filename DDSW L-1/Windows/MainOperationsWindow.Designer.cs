@@ -66,7 +66,7 @@
             button3.Name = "button3";
             button3.Size = new Size(158, 47);
             button3.TabIndex = 2;
-            button3.Text = "Cargo disposal";
+            button3.Text = "Cargo inventarisation";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -94,9 +94,9 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(561, 104);
+            pictureBox3.Location = new Point(535, 86);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(190, 164);
+            pictureBox3.Size = new Size(240, 205);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 5;
             pictureBox3.TabStop = false;
