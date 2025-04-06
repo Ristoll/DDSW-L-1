@@ -1,13 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 namespace DDSW_L_1
 {
-    public class MovingItemsReport
+    public class MovingItemsReport : Report
     {
         public string FileName { get; } = $"MovingReport.txt";
-
-        public MovingItemsReport()
-        {
-        }
         public static List<string> GetMessages()
         {
             List<Item> mainList = DataSaver<Item>.LoadData();

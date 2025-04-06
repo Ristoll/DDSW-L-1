@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            button2 = new Button();
             button3 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -43,16 +43,6 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(286, 291);
-            button2.Name = "button2";
-            button2.Size = new Size(208, 78);
-            button2.TabIndex = 1;
-            button2.Text = "Orders";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // button3
             // 
             button3.Location = new Point(536, 291);
@@ -61,14 +51,25 @@
             button3.TabIndex = 2;
             button3.Text = "Goods` movement";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(288, 291);
+            button2.Name = "button2";
+            button2.Size = new Size(208, 78);
+            button2.TabIndex = 3;
+            button2.Text = "Orders";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // ReportsWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button3);
             Controls.Add(button2);
+            Controls.Add(button3);
             Controls.Add(button1);
             Name = "ReportsWindow";
             Text = "ReportsWindow";
@@ -78,7 +79,7 @@
         #endregion
 
         private Button button1;
-        private Button button2;
         private Button button3;
+        private Button button2;
     }
 }

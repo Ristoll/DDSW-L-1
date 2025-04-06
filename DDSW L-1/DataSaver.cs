@@ -58,21 +58,6 @@ namespace DDSW_L_1
             JsonSerializer.Serialize(fs, dataList, new JsonSerializerOptions { WriteIndented = true });
         }
 
-        public static void SaveOrderData(List<T> dataList, string fileName)
-        {
-            string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
-
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-
-            string fullPath = Path.Combine(folderPath, fileName);
-
-            using FileStream fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
-            JsonSerializer.Serialize(fs, dataList, new JsonSerializerOptions { WriteIndented = true });
-        }
-
         public static List<T> LoadData(string name)
         {
             string fileName = $"{name}sData.txt";
