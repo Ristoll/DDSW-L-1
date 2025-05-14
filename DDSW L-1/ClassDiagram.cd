@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DDSW_L_1.Item" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAQFAAAAAAQAAAAAAAAAAQAAAAABAEA=</HashCode>
+      <FileName>Materials\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDSW_L_1.CurrentStateReport" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAAAAAAAAAAAAAAAAAAAAAAAABAAAAAABAAAA=</HashCode>
+      <FileName>Reports\CurrentStateReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDSW_L_1.MovingItemsReport" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAABAAAA=</HashCode>
+      <FileName>Reports\MovingItemsReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDSW_L_1.OrderReport" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAIAAAIAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Reports\OrderReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDSW_L_1.Report" Collapsed="true">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAABAAAA=</HashCode>
+      <FileName>Reports\Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDSW_L_1.DataSaver&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAQkAAAAAAAAAAUAAAAQAABAMEBAAEAAAA=</HashCode>
+      <FileName>DataSaver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DDSW_L_1.EBrand" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAACAAEAAAAAAAUCA=</HashCode>
+      <FileName>Materials\EBrand.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DDSW_L_1.EType" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAgAQAAAAAAAAACAAAUAAAAAAAAgAAAAIAA=</HashCode>
+      <FileName>Materials\EType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DDSW_L_1.EAccess" Collapsed="true">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAEABAAAAAAAAAAAgAg=</HashCode>
+      <FileName>EAccess.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

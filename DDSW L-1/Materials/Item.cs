@@ -4,7 +4,7 @@ namespace DDSW_L_1
 {
     public class Item
     {
-        public static List<string> Types = DataSaver<string>.LoadFeatures(EStringData.Type);
+        private static List<string> Types = DataSaver<string>.LoadFeatures(EStringData.Type);
         public static List<string> Brands = DataSaver<string>.LoadFeatures(EStringData.Brand);
         private string _brand;
         private string _type;

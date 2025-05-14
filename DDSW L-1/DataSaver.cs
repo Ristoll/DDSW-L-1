@@ -5,12 +5,11 @@ namespace DDSW_L_1
 {
     public static class DataSaver<T>
     {
-        public static string BrandFilePath = "BrandsData.txt";
-        public static string TypeFilePath = "TypesData.txt";
-        public static string ReasonsFilePath = "ReasonsData.txt";
-        public static string OrderFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
-        public static string DeliveryFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Deliveries";
-       
+        public const string BrandFilePath = "BrandsData.txt";
+        public const string TypeFilePath = "TypesData.txt";
+        public const string ReasonsFilePath = "ReasonsData.txt";
+        public const string OrderFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
+        public const string DeliveryFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Deliveries";
         private static string ChoosePath(EStringData stringData)
         {
             string Path = "";

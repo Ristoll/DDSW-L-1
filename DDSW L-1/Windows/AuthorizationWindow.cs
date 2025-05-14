@@ -1,4 +1,6 @@
-﻿namespace DDSW_L_1.Windows
+﻿using Microsoft.VisualBasic.ApplicationServices;
+
+namespace DDSW_L_1.Windows
 {
     public partial class AuthorizationWindow : Form
     {
@@ -10,6 +12,7 @@
         public AuthorizationWindow()
         {
             InitializeComponent();
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         }
 
         private void AuthorizationWindow_Load(object sender, EventArgs e)
@@ -30,6 +33,11 @@
                 else
                 {
                     newUser.CheckIfPhoneNumberExists(textBox3.Text.Trim());
+
+                    if (comboBox1.SelectedIndex == 0)
+                    {
+                        newUser.SetAccess(EAccess.Provider);
+                    }
                     Program.GetUsers().Add(newUser);
                     DataSaver<User>.SaveData(Program.GetUsers());
                     ShowNeededWindow(newUser);
@@ -44,18 +52,28 @@
             }
         }
 
-        private void ShowNeededWindow(User user)
+        private static void ShowNeededWindow(User user)
         {
-            if (user.Access == EAccess.Administrator)
+            switch (user.Access)
             {
-                AdminWindow adminWindow = new AdminWindow();
-                adminWindow.Show();
+                case EAccess.Administrator:
+                    AdminWindow adminWindow = new AdminWindow();
+                    adminWindow.Show();
+                    break;
+                case EAccess.Guest:
+                    OrderWindow orderWindow = new OrderWindow(user);
+                    orderWindow.Show();
+                    break;
+                case EAccess.Provider:
+                    DeliveryWindow deliveryWindow = new DeliveryWindow();
+                    deliveryWindow.Show();
+                    break;
+
             }
-            else if (user.Access == EAccess.Guest)
-            {
-                OrderWindow orderWindow = new OrderWindow(GetCurrentUser());
-                orderWindow.Show();
-            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

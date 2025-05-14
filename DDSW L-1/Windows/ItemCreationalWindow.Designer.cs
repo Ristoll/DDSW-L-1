@@ -37,7 +37,6 @@
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             button1 = new Button();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             textBox3 = new TextBox();
             label5 = new Label();
             label6 = new Label();
@@ -130,6 +129,7 @@
             textBox3.Size = new Size(151, 27);
             textBox3.TabIndex = 9;
             textBox3.Visible = false;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label5
             // 
@@ -195,7 +195,6 @@
         private TextBox textBox1;
         private TextBox textBox2;
         private Button button1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private TextBox textBox3;
         private Label label5;
         private Label label6;

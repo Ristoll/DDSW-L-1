@@ -32,7 +32,14 @@ namespace DDSW_L_1
         public override void OpenReport()
         {
             FillReport();
-            base.OpenReport();
+            try
+            {
+                Process.Start("notepad.exe", Path.Combine(ReportsDirectory, FileName));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Report opening is not available: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

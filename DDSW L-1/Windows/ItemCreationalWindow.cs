@@ -12,15 +12,17 @@ namespace DDSW_L_1
 {
     public partial class ItemCreationalWindow : Form
     {
-        public int TypeIndex;
-        public int BrandIndex;
-        public ItemCreationalWindow()
+        private int TypeIndex;
+        private int BrandIndex;
+        public List<Item> DeliveryList { get; set; }
+        public ItemCreationalWindow(List<Item> deliveryList)
         {
             InitializeComponent();
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             MainOperationsFunc.FillComboBox(comboBox1, EStringData.Type);
             MainOperationsFunc.FillComboBox(comboBox2, EStringData.Brand);
+            DeliveryList = deliveryList;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,7 +66,7 @@ namespace DDSW_L_1
             }
             else
             {
-                type = comboBox1.SelectedItem.ToString();
+                type = comboBox1.SelectedItem!.ToString()!;
             }
             if (BrandIndex == comboBox2.Items.Count - 1)
             {
@@ -76,7 +78,7 @@ namespace DDSW_L_1
             }
             else
             {
-                brand = comboBox2.SelectedItem.ToString();
+                brand = comboBox2.SelectedItem!.ToString()!;
             }
 
             if (!int.TryParse(textBox2.Text, out count))
@@ -85,13 +87,10 @@ namespace DDSW_L_1
                 return;
             }
             Item newItem = new Item(type, name, count, brand);
-            Program.GetItems().Add(newItem);
-            DataSaver<Item>.SaveData(Program.GetItems());
-            Program.InvokeItemsChanged("Brand-New Cargo Approval");
-            MessageBox.Show("Item created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DeliveryList.Add(newItem);
             this.Close();
-            CargoApprovalWindow cargoAcceptanceWindow = new CargoApprovalWindow();
-            cargoAcceptanceWindow.ShowDialog();
+            DeliveryWindow deliveryWindow = new DeliveryWindow(DeliveryList);
+            deliveryWindow.ShowDialog();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,6 +106,11 @@ namespace DDSW_L_1
                 label6.Visible = false;
                 textBox4.Visible = false;
             }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

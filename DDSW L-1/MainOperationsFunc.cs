@@ -3,7 +3,7 @@ using System;
 
 namespace DDSW_L_1
 {
-    public class MainOperationsFunc
+    public static class MainOperationsFunc
     {
         public static void LoadItems(ListBox listBox, bool isMain)
         {
@@ -215,11 +215,6 @@ namespace DDSW_L_1
 
             comboBox.DataSource = null;
             comboBox.DataSource = items;
-        }
-        public static void FillDomainUpDown(DomainUpDown domainUpDown, EStringData stringData)
-        {
-            domainUpDown.Items.Clear();
-            DataSaver<string>.LoadFeatures(stringData);
         }
         public static void UtilizeSelectedItem(ListBox listBox, decimal quantity, int index)
         {

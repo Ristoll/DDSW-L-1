@@ -11,12 +11,6 @@
             DataSaver<string>.LoadFilesToListBox(listBox1, EStringData.Delivery);
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
         }
-
-        private void CargoAcceptanceWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox1Index = listBox1.SelectedIndex;
@@ -33,13 +27,6 @@
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ItemCreationalWindow itemCreationalWindow = new ItemCreationalWindow();
-            itemCreationalWindow.ShowDialog();
             this.Close();
         }
     }

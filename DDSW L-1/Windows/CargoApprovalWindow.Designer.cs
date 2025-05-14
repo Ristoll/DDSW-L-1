@@ -36,7 +36,6 @@
             label1 = new Label();
             listBox2 = new ListBox();
             listBox1 = new ListBox();
-            button3 = new Button();
             SuspendLayout();
             // 
             // button2
@@ -111,22 +110,11 @@
             listBox1.TabIndex = 8;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // button3
-            // 
-            button3.Location = new Point(488, 380);
-            button3.Name = "button3";
-            button3.Size = new Size(107, 51);
-            button3.TabIndex = 16;
-            button3.Text = "Add New Item";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
             // CargoApprovalWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label3);
@@ -137,7 +125,6 @@
             Controls.Add(listBox1);
             Name = "CargoApprovalWindow";
             Text = "CargoApprovalWindow";
-            Load += CargoAcceptanceWindow_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -152,6 +139,5 @@
         private Label label1;
         private ListBox listBox2;
         private ListBox listBox1;
-        private Button button3;
     }
 }

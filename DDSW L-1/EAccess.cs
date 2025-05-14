@@ -5,6 +5,7 @@
         Administrator,
         Manager,
         Keeper,
-        Guest
+        Guest,
+        Provider
     }
 }

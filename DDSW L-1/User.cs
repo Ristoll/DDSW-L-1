@@ -35,31 +35,34 @@ namespace DDSW_L_1
             Password = password;
             Access = EAccess.Guest;
         }
-        private void ValidatePhoneNumber(string value)
+        public void SetAccess(EAccess access)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            Access = access;
+        }
+        private static void ValidatePhoneNumber(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
             {
                 throw new ArgumentException("Номер телефону не може бути пустим!");
             }
 
             string pattern = @"^[0]{1}[0-9]{9}$";
 
-            if (!Regex.IsMatch(value, pattern))
+            if (!Regex.IsMatch(phoneNumber, pattern))
             {
                 throw new ArgumentException("Некоректний формат номера телефону! Введіть у форматі 0XXXXXXXXX.");
             }
         }
-
-        public void CheckIfPhoneNumberExists(string value)
+        public void CheckIfPhoneNumberExists(string phoneNumber)
         {
             List<User> existingUsers = Program.GetUsers();
             if (existingUsers != null && existingUsers.Count > 0)
             {
-                User? existingUser = existingUsers.FirstOrDefault(u => u.TelNum == value);
+                User? existingUser = existingUsers.FirstOrDefault(u => u.TelNum == phoneNumber);
                 if (existingUser != null &&
                     (existingUser.Surname != Surname || existingUser.Name != Name || existingUser.Password != Password))
                 {
-                    throw new ArgumentException($"Користувач з номером {value} вже існує!");
+                    throw new ArgumentException($"Користувач з номером {phoneNumber} вже існує!");
                 }
             }
         }
@@ -74,7 +77,6 @@ namespace DDSW_L_1
             }
             return false;
         }
-
         public override int GetHashCode()
         {
             return HashCode.Combine(Surname, Name, TelNum, Password);

@@ -3,12 +3,8 @@ using System.Windows.Forms;
 
 namespace DDSW_L_1
 {
-    internal class Program
+    public static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        /// 
         public static event Action<string> ItemsChanged;
         private static List<User> usersList = DataSaver<User>.LoadData() ?? new List<User>();
         private static List<Item> itemsList = DataSaver<Item>.LoadData() ?? new List<Item>();
@@ -36,7 +32,6 @@ namespace DDSW_L_1
             List<Item> mainList = DataSaver<Item>.LoadData();
             List<Item> previousList = DataSaver<Item>.LoadData("PreviousStateItem");
 
-            // Повертаємо перший елемент з previousList, якого немає в mainList
             foreach (var prevItem in previousList)
             {
                 bool found = mainList.Any(mainItem =>
@@ -53,7 +48,6 @@ namespace DDSW_L_1
 
             return null;
         }
-
         public static IEnumerable<string> CompareLists()
         {
             List<Item> mainList = DataSaver<Item>.LoadData();

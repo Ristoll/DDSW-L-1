@@ -2,7 +2,7 @@
 {
     public partial class OrderWindow : Form
     {
-        User currentUser;
+        User currentUser = new User();
         private List<Item> orderedItems = new List<Item>();
         private int selectedMainIndex;
         private int selectedOrderIndex;
@@ -34,7 +34,6 @@
             {
                 OrderReport orderReport = new OrderReport($"{currentUser.Surname}-{currentUser.Name}-`sOrder-{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.txt");
                 orderReport.FillReport(orderedItems);
-                orderReport.OpenReport();
                 MessageBox.Show("You have finished placing your order.\nReturn to the initial window.", "The order was successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listBox2.Items.Clear();
                 orderedItems.Clear();
