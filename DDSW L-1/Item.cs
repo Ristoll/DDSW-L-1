@@ -4,8 +4,6 @@ namespace DDSW_L_1
 {
     public class Item
     {
-        private static List<string> Types = DataSaver<string>.LoadFeatures(EStringData.Type);
-        public static List<string> Brands = DataSaver<string>.LoadFeatures(EStringData.Brand);
         private string _brand;
         private string _type;
         [JsonInclude]
@@ -20,7 +18,7 @@ namespace DDSW_L_1
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    MessageBox.Show("Brand cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Type cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 var typeToSet = value.Trim();

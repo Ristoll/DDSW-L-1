@@ -11,11 +11,6 @@ namespace DDSW_L_1.Windows
             InitializeComponent();
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         }
-
-        private void AuthorizationWindow_Load(object sender, EventArgs e)
-        {
-        }
-
         private void authorize_btn_Click(object sender, EventArgs e)
         {
             try

@@ -166,7 +166,6 @@
             Controls.Add(pictureBox1);
             Name = "AuthorizationWindow";
             Text = "AuthorizationWindow";
-            Load += AuthorizationWindow_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

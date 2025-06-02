@@ -1,5 +1,4 @@
-﻿using Mysqlx.Crud;
-using System;
+﻿using System;
 
 namespace DDSW_L_1
 {

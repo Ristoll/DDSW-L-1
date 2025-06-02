@@ -1,6 +1,4 @@
-﻿using Mysqlx.Crud;
-
-namespace DDSW_L_1
+﻿namespace DDSW_L_1
 {
     public partial class OrderManagementWindow : Form
     {
