@@ -93,7 +93,6 @@ namespace DDSW_L_1
                 MessageBox.Show("Select item from left list of items to continue", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public static void SetCounterValue(ListBox mainListBox, NumericUpDown numericUpDown)
         {
             if (mainListBox.SelectedIndex == -1)
@@ -131,10 +130,22 @@ namespace DDSW_L_1
                 MessageBox.Show("Please select an item to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public static void DeleteItemInDeliveryBox(ListBox listBox, int selectedIndex)
+        {
+            if (selectedIndex >= 0 && selectedIndex < listBox.Items.Count)
+            {
+                Program.GetDeliveryItems().RemoveAt(selectedIndex);
 
+                UpdateListBox(Program.GetDeliveryItems(), listBox, false);
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public static void LoadReportsToListBox(ListBox listBox)
         {
-            string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
+            string folderPath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\Orders\";
 
             try
             {
@@ -168,21 +179,22 @@ namespace DDSW_L_1
         }
         public static void ApproveMoving(ListBox orders, ListBox orderItemsBox, ListBox mainListBox, List<List<Item>> items, int index, bool isOrder)
         {
-            string selectedFileName = orders.Items[index]?.ToString();
             if (index == -1)
             {
                 MessageBox.Show("Select order to approve", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            string selectedFileName = orders.Items[index].ToString();
             List<Item> orderItems = items[index];
 
             foreach (var orderedItem in orderItems)
             {
                 Item stockItem = Program.GetItems().FirstOrDefault(i => i.Name == orderedItem.Name && i.Brand == orderedItem.Brand);
 
-                if (stockItem != null)
+                if (isOrder)
                 {
-                    if (isOrder)
+                    if (stockItem != null)
                     {
                         if (stockItem.Count >= orderedItem.Count)
                         {
@@ -196,18 +208,37 @@ namespace DDSW_L_1
                     }
                     else
                     {
+                        MessageBox.Show($"Item not found in stock: {orderedItem.Name} {orderedItem.Brand}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    if (stockItem != null)
+                    {
                         stockItem.Count += orderedItem.Count;
+                    }
+                    else
+                    {
+                        Program.GetItems().Add(new Item(orderedItem.Type, orderedItem.Name, orderedItem.Count, orderedItem.Brand));
                     }
                 }
             }
+
+            // ці дії потрібно виконати один раз ПІСЛЯ циклу
             orders.Items.RemoveAt(index);
             items.RemoveAt(index);
             orderItemsBox.Items.Clear();
-            DataSaver<Item>.DeleteFile(selectedFileName);
+
+            if (isOrder)
+                DataSaver<Item>.DeleteOrderReport(selectedFileName);
+            else
+                DataSaver<Item>.DeleteDeliveryReport(selectedFileName);
+
             DataSaver<Item>.SaveData(Program.GetItems());
             UpdateListBox(Program.GetItems(), mainListBox, true);
-
         }
+
         public static void FillComboBox(ComboBox comboBox, EStringData stringData)
         {
             List<string> items = DataSaver<string>.LoadFeatures(stringData);

@@ -1,0 +1,98 @@
+[
+  {
+    "Name": "Brick",
+    "Count": 28,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "Plaster",
+    "Count": 33,
+    "Type": "Finishing",
+    "Brand": "Knauf"
+  },
+  {
+    "Name": "Tile",
+    "Count": 180,
+    "Type": "Roofing",
+    "Brand": "Braas"
+  },
+  {
+    "Name": "Window",
+    "Count": 50,
+    "Type": "WindowsAndDoors",
+    "Brand": "Veka"
+  },
+  {
+    "Name": "Concrete",
+    "Count": 408,
+    "Type": "Mixtures",
+    "Brand": "Heidelberg"
+  },
+  {
+    "Name": "Pipe",
+    "Count": 270,
+    "Type": "Plumbing",
+    "Brand": "Rehau"
+  },
+  {
+    "Name": "Radiator",
+    "Count": 115,
+    "Type": "Heating",
+    "Brand": "Kermi"
+  },
+  {
+    "Name": "Insulation",
+    "Count": 67,
+    "Type": "Specialised",
+    "Brand": "Isover"
+  },
+  {
+    "Name": "Steel",
+    "Count": 180,
+    "Type": "Structural",
+    "Brand": "ArcelorMittal"
+  },
+  {
+    "Name": "Paint",
+    "Count": 27,
+    "Type": "Finishing",
+    "Brand": "Dulux"
+  },
+  {
+    "Name": "Shingle",
+    "Count": 100,
+    "Type": "Roofing",
+    "Brand": "GAF"
+  },
+  {
+    "Name": "Door",
+    "Count": 15,
+    "Type": "WindowsAndDoors",
+    "Brand": "Hormann"
+  },
+  {
+    "Name": "Mortar",
+    "Count": 285,
+    "Type": "Mixtures",
+    "Brand": "Cemex"
+  },
+  {
+    "Name": "Faucet",
+    "Count": 85,
+    "Type": "Plumbing",
+    "Brand": "Grohe"
+  },
+  {
+    "Name": "Fitting",
+    "Count": 250,
+    "Type": "Plumbing",
+    "Brand": "Viega"
+  },
+  {
+    "Name": "Boiler",
+    "Count": 75,
+    "Type": "Heating",
+    "Brand": "Vaillant"
+  }
+]

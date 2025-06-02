@@ -27,7 +27,7 @@ namespace DDSW_L_1
 
                 if (!File.Exists(DataSaver<string>.TypeFilePath))
                 {
-                    File.WriteAllText(DataSaver<string>.BrandFilePath, "");
+                    File.WriteAllText(DataSaver<string>.TypeFilePath, "");
                 }
 
                 var existingBrands = File.ReadAllLines(DataSaver<string>.TypeFilePath)

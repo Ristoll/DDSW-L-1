@@ -6,10 +6,12 @@ namespace DDSW_L_1
     public static class Program
     {
         public static event Action<string> ItemsChanged;
+        public static event Action DeliveryItemsChanged;
         private static List<User> usersList = DataSaver<User>.LoadData() ?? new List<User>();
         private static List<Item> itemsList = DataSaver<Item>.LoadData() ?? new List<Item>();
         private static List<Item> customerItems = DataSaver<Item>.LoadData("CustomerItem") ?? new List<Item>();
         private static List<Item> previousStateItems = itemsList;
+        private static List<Item> DeliveryItems = new List<Item>();
         private static MovingItemsReport report = new MovingItemsReport();
         static Program()
         {
@@ -19,6 +21,7 @@ namespace DDSW_L_1
         public static List<User> GetUsers() => usersList;
         public static List<Item> GetItems() => itemsList;
         public static List<Item> GetCustomerItems() => customerItems;
+        public static List<Item> GetDeliveryItems() => DeliveryItems;
         public static List<Item> GetPreviousStateItems() => previousStateItems;
         public static void SetUsers(List<User> users) => usersList = users;
         public static void SetItems(List<Item> items) => itemsList = items;
@@ -27,6 +30,8 @@ namespace DDSW_L_1
             previousStateItems = itemsList;
             DataSaver<Item>.SaveData(previousStateItems, "PreviousStateItem");
         }
+        public static void SetCustomerItems(List<Item> items) => customerItems = items;
+        public static void SetDeliveryItems(List<Item> items) => DeliveryItems = items;
         public static Item? GetDeletedItem()
         {
             List<Item> mainList = DataSaver<Item>.LoadData();
@@ -72,6 +77,11 @@ namespace DDSW_L_1
         public static void InvokeItemsChanged(string reason)
         {
             ItemsChanged?.Invoke(reason);
+        }
+
+        public static void InvokeDeliveryItemsChanged()
+        {
+            DeliveryItemsChanged?.Invoke();
         }
 
         [STAThread]

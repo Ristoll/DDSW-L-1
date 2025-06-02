@@ -28,4 +28,16 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ReportsFiles\Deliveries\" />
+    <Folder Include="ReportsFiles\Orders\" />
+    <Folder Include="ReportsFiles\CurrentStateReports\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\UsersData.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

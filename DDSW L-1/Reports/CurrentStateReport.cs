@@ -4,7 +4,7 @@ namespace DDSW_L_1
 {
     public class CurrentStateReport : Report
     {
-        private static readonly string ReportsDirectory = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Reports\CurrentStateReports";
+        private static readonly string ReportsDirectory = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\CurrentStateReports\";
         private string FileName = $"CurrentStateReport{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.txt";
         public void FillReport()
         {

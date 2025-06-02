@@ -1,0 +1,4 @@
+﻿Expired
+Damaged
+Forced disposal
+Other

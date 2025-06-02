@@ -1,0 +1,176 @@
+[
+  {
+    "Name": "Brick",
+    "Count": 43,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "Window",
+    "Count": 50,
+    "Type": "WindowsAndDoors",
+    "Brand": "Veka"
+  },
+  {
+    "Name": "Concrete",
+    "Count": 408,
+    "Type": "Mixtures",
+    "Brand": "Heidelberg"
+  },
+  {
+    "Name": "Pipe",
+    "Count": 280,
+    "Type": "Plumbing",
+    "Brand": "Rehau"
+  },
+  {
+    "Name": "Radiator",
+    "Count": 115,
+    "Type": "Heating",
+    "Brand": "Kermi"
+  },
+  {
+    "Name": "Insulation",
+    "Count": 78,
+    "Type": "Specialised",
+    "Brand": "Isover"
+  },
+  {
+    "Name": "Steel",
+    "Count": 180,
+    "Type": "Structural",
+    "Brand": "ArcelorMittal"
+  },
+  {
+    "Name": "Paint",
+    "Count": 30,
+    "Type": "Finishing",
+    "Brand": "Dulux"
+  },
+  {
+    "Name": "Shingle",
+    "Count": 100,
+    "Type": "Roofing",
+    "Brand": "GAF"
+  },
+  {
+    "Name": "Door",
+    "Count": 15,
+    "Type": "WindowsAndDoors",
+    "Brand": "Hormann"
+  },
+  {
+    "Name": "Mortar",
+    "Count": 285,
+    "Type": "Mixtures",
+    "Brand": "Cemex"
+  },
+  {
+    "Name": "Faucet",
+    "Count": 90,
+    "Type": "Plumbing",
+    "Brand": "Grohe"
+  },
+  {
+    "Name": "Fitting",
+    "Count": 245,
+    "Type": "Plumbing",
+    "Brand": "Viega"
+  },
+  {
+    "Name": "Boiler",
+    "Count": 75,
+    "Type": "Heating",
+    "Brand": "Vaillant"
+  },
+  {
+    "Name": "O-Window",
+    "Count": 130,
+    "Type": "WindowsAndDoors",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "O-Door",
+    "Count": 100,
+    "Type": "WindowsAndDoors",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "Bricks",
+    "Count": 20,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "Paint (red)",
+    "Count": 13,
+    "Type": "Mixtures",
+    "Brand": "Isover"
+  },
+  {
+    "Name": "QWE",
+    "Count": 34,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "RTY",
+    "Count": 34,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "DF",
+    "Count": 99,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "TY",
+    "Count": 123,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "ER",
+    "Count": 65,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "NEWITEM",
+    "Count": 246,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "RT",
+    "Count": 344,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "ASD",
+    "Count": 34,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "FGH",
+    "Count": 34,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "HJK",
+    "Count": 45,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "SD",
+    "Count": 12,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  }
+]

@@ -66,7 +66,7 @@ namespace DDSW_L_1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string filePath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\UsersData.txt";
+            string filePath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\Data\UsersData.txt";
 
             if (File.Exists(filePath))
             {

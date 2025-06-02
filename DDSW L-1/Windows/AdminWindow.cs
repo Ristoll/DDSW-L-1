@@ -2,9 +2,13 @@ namespace DDSW_L_1
 {
     public partial class AdminWindow : Form
     {
-        public AdminWindow()
+        public AdminWindow(User user)
         {
             InitializeComponent();
+            if (user.Access == EAccess.Manager)
+            {
+                button1.Visible = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

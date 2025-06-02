@@ -1,13 +1,19 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace DDSW_L_1
 {
-    public class OrderReport : Report
+    public class DeliveryReport : Report
     {
-        private static string folderPath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\Orders\";
+
+        private static string folderPath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\Deliveries\";
         public string FileName { get; set; }
-        public OrderReport(string fileName)
+        public DeliveryReport(string fileName)
         {
             FileName = fileName;
         }
@@ -46,4 +52,6 @@ namespace DDSW_L_1
             }
         }
     }
+
+
 }

@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Plaster",
+    "Count": 5,
+    "Type": "Finishing",
+    "Brand": "Knauf"
+  },
+  {
+    "Name": "Pipe",
+    "Count": 10,
+    "Type": "Plumbing",
+    "Brand": "Rehau"
+  },
+  {
+    "Name": "Shingle",
+    "Count": 3,
+    "Type": "Roofing",
+    "Brand": "GAF"
+  }
+]

@@ -1,14 +1,11 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DDSW_L_1.Windows
 {
     public partial class AuthorizationWindow : Form
     {
         User existingUser;
-        public User GetCurrentUser()
-        {
-            return existingUser;
-        }
         public AuthorizationWindow()
         {
             InitializeComponent();
@@ -57,18 +54,22 @@ namespace DDSW_L_1.Windows
             switch (user.Access)
             {
                 case EAccess.Administrator:
-                    AdminWindow adminWindow = new AdminWindow();
+                    AdminWindow adminWindow = new AdminWindow(user);
                     adminWindow.Show();
+                    break;
+                case EAccess.Manager:
+                    AdminWindow window = new AdminWindow(user);
+                    window.Show();
                     break;
                 case EAccess.Guest:
                     OrderWindow orderWindow = new OrderWindow(user);
                     orderWindow.Show();
                     break;
                 case EAccess.Provider:
-                    DeliveryWindow deliveryWindow = new DeliveryWindow();
+                    List<Item> items = new();
+                    DeliveryWindow deliveryWindow = new DeliveryWindow(user);
                     deliveryWindow.Show();
                     break;
-
             }
         }
 

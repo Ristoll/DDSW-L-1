@@ -5,11 +5,12 @@ namespace DDSW_L_1
 {
     public static class DataSaver<T>
     {
-        public const string BrandFilePath = "BrandsData.txt";
-        public const string TypeFilePath = "TypesData.txt";
-        public const string ReasonsFilePath = "ReasonsData.txt";
-        public const string OrderFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
-        public const string DeliveryFolderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Deliveries";
+        public static string basePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data\"));
+        public const string BrandFilePath = "D:\\source\\repos\\DDSW L-1\\DDSW L-1\\DDSW L-1\\Data\\BrandsData.txt";
+        public const string TypeFilePath = "D:\\source\\repos\\DDSW L-1\\DDSW L-1\\DDSW L-1\\Data\\TypesData.txt";
+        public const string ReasonsFilePath = "D:\\source\\repos\\DDSW L-1\\DDSW L-1\\DDSW L-1\\Data\\ReasonsData.txt";
+        public const string OrderFolderPath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\Orders\";
+        public const string DeliveryFolderPath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\Deliveries\";
         private static string ChoosePath(EStringData stringData)
         {
             string Path = "";
@@ -44,14 +45,14 @@ namespace DDSW_L_1
         }
         public static void SaveData(List<T> dataList)
         {
-            string fileName = $"{typeof(T).Name}sData.txt";
+            string fileName = Path.Combine(basePath, $"{typeof(T).Name}sData.txt");
 
             using FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             JsonSerializer.Serialize(fs, dataList, new JsonSerializerOptions { WriteIndented = true });
         }
         public static void SaveData(List<T> dataList, string header)
         {
-            string fileName = $"{header}sData.txt";
+            string fileName = Path.Combine(basePath, $"{header}sData.txt");
 
             using FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             JsonSerializer.Serialize(fs, dataList, new JsonSerializerOptions { WriteIndented = true });
@@ -59,7 +60,7 @@ namespace DDSW_L_1
 
         public static List<T> LoadData(string name)
         {
-            string fileName = $"{name}sData.txt";
+            string fileName = Path.Combine(basePath, $"{name}sData.txt");
 
             using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
@@ -69,7 +70,7 @@ namespace DDSW_L_1
         }
         public static List<T> LoadData()
         {
-            string fileName = $"{typeof(T).Name}sData.txt";
+            string fileName = Path.Combine(basePath, $"{typeof(T).Name}sData.txt");
 
             using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
@@ -139,9 +140,23 @@ namespace DDSW_L_1
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static void DeleteFile(string fileName)
+        public static void DeleteOrderReport(string fileName)
         {
-            string folderPath = @"C:\Users\Крістіна\source\repos\DDSW L-1\DDSW L-1\bin\Debug\net8.0-windows\Orders";
+            string folderPath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\Orders\";
+            string fullPath = Path.Combine(folderPath, fileName);
+
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
+            else
+            {
+                MessageBox.Show("File not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void DeleteDeliveryReport(string fileName)
+        {
+            string folderPath = @"D:\source\repos\DDSW L-1\DDSW L-1\DDSW L-1\ReportsFiles\Deliveries\";
             string fullPath = Path.Combine(folderPath, fileName);
 
             if (File.Exists(fullPath))
@@ -170,7 +185,6 @@ namespace DDSW_L_1
 
             if (!File.Exists(filePath))
             {
-                File.WriteAllText(filePath, "");
                 return new List<string>();
             }
 
