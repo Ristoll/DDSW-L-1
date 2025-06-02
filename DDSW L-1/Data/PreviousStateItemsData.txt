@@ -1,13 +1,13 @@
 [
   {
     "Name": "Brick",
-    "Count": 43,
+    "Count": 38,
     "Type": "Structural",
     "Brand": "Wienerberger"
   },
   {
     "Name": "Window",
-    "Count": 50,
+    "Count": 60,
     "Type": "WindowsAndDoors",
     "Brand": "Veka"
   },
@@ -19,7 +19,7 @@
   },
   {
     "Name": "Pipe",
-    "Count": 280,
+    "Count": 275,
     "Type": "Plumbing",
     "Brand": "Rehau"
   },
@@ -49,7 +49,7 @@
   },
   {
     "Name": "Shingle",
-    "Count": 100,
+    "Count": 82,
     "Type": "Roofing",
     "Brand": "GAF"
   },
@@ -170,6 +170,12 @@
   {
     "Name": "SD",
     "Count": 12,
+    "Type": "Structural",
+    "Brand": "Wienerberger"
+  },
+  {
+    "Name": "ITEM2",
+    "Count": 123,
     "Type": "Structural",
     "Brand": "Wienerberger"
   }

@@ -237,6 +237,30 @@ namespace DDSW_L_1
             DataSaver<Item>.SaveData(Program.GetItems());
             UpdateListBox(Program.GetItems(), mainListBox, true);
         }
+        public static void RefuseMoving(ListBox orders, ListBox orderItemsBox, ListBox mainListBox, List<List<Item>> items, int index, bool isOrder)
+        {
+            if (index == -1)
+            {
+                MessageBox.Show("Select order to refuse", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string selectedFileName = orders.Items[index].ToString();
+
+            // Видаляємо елементи із списку та звіт
+            orders.Items.RemoveAt(index);
+            items.RemoveAt(index);
+            orderItemsBox.Items.Clear();
+
+            if (isOrder)
+                DataSaver<Item>.DeleteOrderReport(selectedFileName);
+            else
+                DataSaver<Item>.DeleteDeliveryReport(selectedFileName);
+
+            // Оновлюємо головний список без змін складу
+            UpdateListBox(Program.GetItems(), mainListBox, true);
+        }
+
 
         public static void FillComboBox(ComboBox comboBox, EStringData stringData)
         {

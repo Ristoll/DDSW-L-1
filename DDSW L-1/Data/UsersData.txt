@@ -1,10 +1,17 @@
 [
   {
     "Access": 0,
-    "Surname": "C",
-    "Name": "K",
-    "TelNum": "0963875873",
+    "Surname": "ADMIN",
+    "Name": "ADMIN",
+    "TelNum": "0911111111",
     "Password": "1"
+  },
+  {
+    "Access": 1,
+    "Surname": "MANAGER",
+    "Name": "MANAGER",
+    "TelNum": "0922222222",
+    "Password": "2"
   },
   {
     "Access": 3,
@@ -40,5 +47,19 @@
     "Name": "DELIVERY",
     "TelNum": "0983875873",
     "Password": "111"
+  },
+  {
+    "Access": 2,
+    "Surname": "CUSTOMER",
+    "Name": "CUSTOMER",
+    "TelNum": "0987654328",
+    "Password": "QWERTY"
+  },
+  {
+    "Access": 3,
+    "Surname": "PROVIDER",
+    "Name": "PROVIDER",
+    "TelNum": "0987123456",
+    "Password": "QWERTYY"
   }
 ]

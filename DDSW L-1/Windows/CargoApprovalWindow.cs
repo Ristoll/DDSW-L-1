@@ -29,5 +29,12 @@
         {
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MainOperationsFunc.RefuseMoving(listBox1, listBox2, listBox3, deliveriesData, listBox1Index, false);
+            MainOperationsFunc.UpdateListBox(Program.GetItems(), listBox3, true);
+            Program.InvokeItemsChanged("Cargo Refused");
+        }
     }
 }

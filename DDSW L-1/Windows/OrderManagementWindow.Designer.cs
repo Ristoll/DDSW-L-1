@@ -36,6 +36,7 @@
             label3 = new Label();
             button1 = new Button();
             button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // listBox1
@@ -93,7 +94,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(342, 369);
+            button1.Location = new Point(263, 369);
             button1.Name = "button1";
             button1.Size = new Size(107, 39);
             button1.TabIndex = 6;
@@ -111,11 +112,22 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(413, 369);
+            button3.Name = "button3";
+            button3.Size = new Size(107, 39);
+            button3.TabIndex = 8;
+            button3.Text = "Refuse";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // OrderManagementWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label3);
@@ -141,5 +153,6 @@
         private Label label3;
         private Button button1;
         private Button button2;
+        private Button button3;
     }
 }

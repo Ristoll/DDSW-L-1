@@ -1,13 +1,13 @@
 [
   {
     "Name": "Brick",
-    "Count": 28,
+    "Count": 23,
     "Type": "Structural",
     "Brand": "Wienerberger"
   },
   {
     "Name": "Plaster",
-    "Count": 33,
+    "Count": 43,
     "Type": "Finishing",
     "Brand": "Knauf"
   },
@@ -31,7 +31,7 @@
   },
   {
     "Name": "Pipe",
-    "Count": 270,
+    "Count": 265,
     "Type": "Plumbing",
     "Brand": "Rehau"
   },
@@ -61,7 +61,7 @@
   },
   {
     "Name": "Shingle",
-    "Count": 100,
+    "Count": 82,
     "Type": "Roofing",
     "Brand": "GAF"
   },

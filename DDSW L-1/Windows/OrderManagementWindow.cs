@@ -40,5 +40,12 @@
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MainOperationsFunc.RefuseMoving(listBox1, listBox2, listBox3, ordersData, listBox1Index, true);
+            MainOperationsFunc.UpdateListBox(Program.GetItems(), listBox3, true);
+            Program.InvokeItemsChanged("The Order Has Been Refused");
+        }
     }
 }
